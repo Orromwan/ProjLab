@@ -19,7 +19,7 @@ public class Field
 	protected ArrayList<Worker> workers = new ArrayList<Worker>();
 
 	// Mi van a mezõn
-	protected String containstate="CLEAR";
+	protected FieldStatus containstate=FieldStatus.CLEAR;
 	
 	// Milyen folyadék van a mezõn
 	protected Liquid liquidstate=Liquid.NONE;
@@ -47,7 +47,7 @@ public class Field
 	void AddWorker(Worker w)
 	{
 		workers.add(w);
-		containstate="WORKER";
+		containstate=FieldStatus.WORKERS;
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class Field
 		System.out.println(toString()+" - AcceptWorker called");
 		switch(containstate)
 		{
-		case "BOX":
+		case BOX:
 
 			if(neighbors[d.getDir()].AcceptBox(box, d, w.getStrength()))
 			{
@@ -80,7 +80,7 @@ public class Field
 	void AddBox(Box b)
 	{
 		this.box=b;
-		containstate="BOX";
+		containstate=FieldStatus.BOX;
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class Field
 		System.out.println(toString()+" - AcceptBox called");
 		switch(containstate)
 		{
-		case "BOX":
+		case BOX:
 
 			boolean r = neighbors[d.getDir()].AcceptBox(box, d, str-liquidstate.friction()) || str>=liquidstate.friction();
 			if(r)
@@ -104,7 +104,7 @@ public class Field
 			}
 			return r;
 
-		case "WORKER":
+		case WORKERS:
 
 			neighbors[d.getDir()].AcceptUnwillingWorkers(workers, d);
 			workers.clear();
@@ -130,7 +130,7 @@ public class Field
 		System.out.println(toString()+" - AcceptUnwillingWorkers called");
 		switch(containstate)
 		{
-		case "BOX":
+		case BOX:
 
 			for(Worker w : l)
 				w.kill();
@@ -152,7 +152,7 @@ public class Field
 	{
 		//PRINT
 		System.out.println(toString()+" - removeBox called");
-		containstate="CLEAR";
+		containstate=FieldStatus.CLEAR;
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class Field
 		System.out.println(toString()+" - removeWorker called");
 		workers.remove(w);
 		if(workers.isEmpty())
-			containstate="CLEAR";
+			containstate=FieldStatus.CLEAR;
 	}
 	
 	/**

@@ -19,7 +19,7 @@ public class EndPos extends Field
 		System.out.println(toString()+" - AcceptBox called");
 		switch(containstate)
 		{
-		case "BOX":
+		case BOX:
 			
 			boolean r = neighbors[d.getDir()].AcceptBox(box, d, str-liquidstate.friction()) || str>=liquidstate.friction();
 			if(r)
@@ -28,7 +28,7 @@ public class EndPos extends Field
 			}
 			return r;
 
-		case "WORKER":
+		case WORKERS:
 			
 			AcceptUnwillingWorkers(workers, d);
 			workers.clear();

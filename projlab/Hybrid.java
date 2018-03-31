@@ -58,7 +58,7 @@ public class Hybrid extends Field
 		{
 			switch(containstate)
 			{
-			case "BOX":
+			case BOX:
 				
 				boolean r = neighbors[d.getDir()].AcceptBox(box, d, str-liquidstate.friction()) || str>=liquidstate.friction();
 				if(r)
@@ -68,7 +68,7 @@ public class Hybrid extends Field
 					
 				return r;
 
-			case "WORKER":
+			case WORKERS:
 
 				AcceptUnwillingWorkers(workers, d);
 				workers.clear();
@@ -101,7 +101,7 @@ public class Hybrid extends Field
 		{
 			switch(containstate)
 			{
-			case "BOX":
+			case BOX:
 
 				if(neighbors[d.getDir()].AcceptBox(box, d, w.getStrength()))
 				{

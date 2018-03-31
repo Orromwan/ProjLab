@@ -6,9 +6,6 @@ package projlab;
  */
 public class Box {
 	
-	// A munkás aki utóljára megtolta a dobozt.
-	private Worker worker;
-	
 	// A mezõ amin jelenleg van a doboz.
 	private Field currentField;
 	
@@ -44,14 +41,4 @@ public class Box {
 		currentField=null;
 	}
 	
-	/**
-	 * A munkásnak megnöveli a pontjait a paraméterül kapott értékkel.
-	 * @param p - Az érték
-	 */
-	void addPointsToLastWorker(int p)
-	{
-		//PRINT
-		System.out.println(toString()+" - addPointsToLastWorker called");
-		worker.IncPoints(p);
-	}
 }
