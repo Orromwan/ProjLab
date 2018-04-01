@@ -15,9 +15,6 @@ public class Switch extends Field
 		hybrid=h;
 	}
 	
-	// A kapcsoló állapota
-	boolean status;
-	
 	/**
 	 * Doboz fogadása, doboz erre a mezõre kerül.
 	 * @param b - A doboz
@@ -32,18 +29,22 @@ public class Switch extends Field
 		{
 		case BOX:
 
-			boolean r = neighbors[d.getDir()].AcceptBox(box, d, str-liquidstate.friction()) || str>=liquidstate.friction();
+			int fr = liquidstate.friction();
+			boolean r = str>=fr;
 			if(r)
 			{
-				b.UpdateBox(this); AddBox(b);
+				r = neighbors[d.getDir()].AcceptBox(box, d, str-fr);
+				if(r)
+				{
+					b.UpdateBox(this); AddBox(b);
+					hybrid.switchOn();
+				}
 			}
-				
 			return r;
 
 		case WORKERS:
 						
 			AcceptUnwillingWorkers(workers, d);
-			workers.clear();
 			b.UpdateBox(this); AddBox(b);
 			hybrid.switchOn();
 			return true;

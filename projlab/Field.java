@@ -20,10 +20,10 @@ public class Field
 
 	// Mi van a mezõn
 	protected FieldStatus containstate=FieldStatus.CLEAR;
-	
+
 	// Milyen folyadék van a mezõn
 	protected Liquid liquidstate=Liquid.NONE;
-	
+
 	//A pálya építéséhez
 	void addNeighbor(Field f, Direction d)
 	{
@@ -97,17 +97,21 @@ public class Field
 		{
 		case BOX:
 
-			boolean r = neighbors[d.getDir()].AcceptBox(box, d, str-liquidstate.friction()) || str>=liquidstate.friction();
+			int fr = liquidstate.friction();
+			boolean r = str>=fr;
 			if(r)
 			{
-				b.UpdateBox(this); AddBox(b);
+				r = neighbors[d.getDir()].AcceptBox(box, d, str-fr);
+				if(r)
+				{
+					b.UpdateBox(this); AddBox(b);
+				}
 			}
 			return r;
 
 		case WORKERS:
 
 			neighbors[d.getDir()].AcceptUnwillingWorkers(workers, d);
-			workers.clear();
 			b.UpdateBox(this); AddBox(b);
 			return true;
 
@@ -124,7 +128,7 @@ public class Field
 	 * @param d - Ebbõl az irányból
 	 * @return - Sikeres volt-e a mozgatás
 	 */
-	boolean AcceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
+	void AcceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
 	{
 		//PRINT
 		System.out.println(toString()+" - AcceptUnwillingWorkers called");
@@ -134,13 +138,13 @@ public class Field
 
 			for(Worker w : l)
 				w.kill();
-			return true;
-								
+			break;
+
 		default:
 
 			for(Worker w : l)
 				AcceptWorker(w, d);
-			return true;
+			break;
 		}
 	}
 
@@ -167,7 +171,7 @@ public class Field
 		if(workers.isEmpty())
 			containstate=FieldStatus.CLEAR;
 	}
-	
+
 	/**
 	 * Méz öntése a mezõre
 	 */
@@ -175,7 +179,7 @@ public class Field
 	{
 		liquidstate=Liquid.HONEY;
 	}
-	
+
 	/**
 	 * Olaj öntése a mezõre
 	 */

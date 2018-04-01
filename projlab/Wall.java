@@ -14,7 +14,7 @@ public class Wall extends Field
 	 * @param d - Ebbõl az irányból
 	 * @return - sikeres volt-e a doboz fogadása
 	 */
-	boolean AcceptBox(Box b, Direction d)
+	boolean AcceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
 		System.out.println(toString()+" - AcceptBox called");
@@ -40,7 +40,7 @@ public class Wall extends Field
 	 * @param d - Ebbõl az irányból
 	 * @return - Sikeres volt-e a mozgatás
 	 */
-	boolean AcceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
+	void AcceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
 	{
 		//PRINT
 		System.out.println(toString()+" - AcceptUnwillingWorkers called");
@@ -48,7 +48,5 @@ public class Wall extends Field
 		{
 			w.kill();
 		}
-		System.out.println(toString()+" true");
-		return true;
 	}
 }

@@ -30,17 +30,6 @@ public class Hybrid extends Field
 	}
 
 	/**
-	 * Vissza adja a hibrid állapotát.
-	 * @return - A hibrid állapota
-	 */
-	boolean getStatus()
-	{
-		//PRINT
-		System.out.println(toString()+" - getStatus called");
-		return status;
-	}
-
-	/**
 	 * Doboz fogadása, doboz erre a mezõre kerül.
 	 * @param b - A doboz
 	 * @param d - Ebbõl az irányból
@@ -60,18 +49,21 @@ public class Hybrid extends Field
 			{
 			case BOX:
 				
-				boolean r = neighbors[d.getDir()].AcceptBox(box, d, str-liquidstate.friction()) || str>=liquidstate.friction();
+				int fr = liquidstate.friction();
+				boolean r = str>=fr;
 				if(r)
 				{
-					b.UpdateBox(this); AddBox(b);
+					r = neighbors[d.getDir()].AcceptBox(box, d, str-fr);
+					if(r)
+					{
+						b.UpdateBox(this); AddBox(b);
+					}
 				}
-					
 				return r;
 
 			case WORKERS:
 
 				AcceptUnwillingWorkers(workers, d);
-				workers.clear();
 				b.UpdateBox(this); AddBox(b);
 				return true;
 
