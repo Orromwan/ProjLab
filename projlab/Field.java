@@ -62,10 +62,15 @@ public class Field
 		switch(containstate)
 		{
 		case BOX:
-
-			if(neighbors[d.getDir()].AcceptBox(box, d, w.getStrength()))
+			int str=w.getStrength();
+			int fr = liquidstate.friction();
+			boolean r = str>=fr;
+			if(r)
 			{
-				w.UpdateWorker(this); AddWorker(w);
+				if(neighbors[d.getDir()].AcceptBox(box, d, str))
+				{
+					w.UpdateWorker(this); AddWorker(w);
+				}
 			}				
 			break;
 
@@ -96,7 +101,6 @@ public class Field
 		switch(containstate)
 		{
 		case BOX:
-
 			int fr = liquidstate.friction();
 			boolean r = str>=fr;
 			if(r)
@@ -177,6 +181,7 @@ public class Field
 	 */
 	void pourHoney()
 	{
+		System.out.println(toString()+" - pourHoney called");
 		liquidstate=Liquid.HONEY;
 	}
 
@@ -185,6 +190,7 @@ public class Field
 	 */
 	void pourOil()
 	{
+		System.out.println(toString()+" - pourOil called");
 		liquidstate=Liquid.OIL;
 	}
 }

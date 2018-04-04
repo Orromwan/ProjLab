@@ -70,11 +70,17 @@ public class Switch extends Field
 		{
 		case BOX:
 			
-			if(neighbors[d.getDir()].AcceptBox(box, d, w.getStrength()))
+			int str=w.getStrength();
+			int fr = liquidstate.friction();
+			boolean r = str>=fr;
+			if(r)
 			{
-				w.UpdateWorker(this); AddWorker(w);
-				hybrid.close();
-			}				
+				if(neighbors[d.getDir()].AcceptBox(box, d, str))
+				{
+					w.UpdateWorker(this); AddWorker(w);
+					hybrid.close();
+				}
+			}
 			break;
 
 		default:

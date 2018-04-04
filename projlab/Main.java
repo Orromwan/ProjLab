@@ -193,7 +193,7 @@ public class Main {
 		Field f1 = new Field();
 		Field f2 = new Field();
 		Field f3 = new Field();
-		Wall wa1 = new Wall();
+		Field wa1 = new Field();
 		Box b1 = new Box(f2);		
 		Worker w1 = new Worker(f1, 6);
 		Worker w2 = new Worker(f3, 6);

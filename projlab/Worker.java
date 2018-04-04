@@ -78,4 +78,20 @@ public class Worker
 	{
 		return strength;
 	}
+	
+	/**
+	 * Mézet önt az aktuális mezõre
+	 */
+	void pourHoney()
+	{
+		pos.pourHoney();	
+	}
+	
+	/**
+	 * Olajat önt az aktuális mezõre
+	 */
+	void pourOil()
+	{
+		pos.pourOil();
+	}
 }

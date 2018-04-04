@@ -94,11 +94,17 @@ public class Hybrid extends Field
 			switch(containstate)
 			{
 			case BOX:
-
-				if(neighbors[d.getDir()].AcceptBox(box, d, w.getStrength()))
+				
+				int str=w.getStrength();
+				int fr = liquidstate.friction();
+				boolean r = str>=fr;
+				if(r)
 				{
-					w.UpdateWorker(this); AddWorker(w);
-				}				
+					if(neighbors[d.getDir()].AcceptBox(box, d, str))
+					{
+						w.UpdateWorker(this); AddWorker(w);
+					}
+				}
 				break;
 
 			default:
