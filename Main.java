@@ -1,4 +1,4 @@
-package projlab;
+//package projlab;
 
 public class Main {
 	
