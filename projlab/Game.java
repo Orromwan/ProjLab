@@ -15,16 +15,14 @@ public class Game
 	//A játékosok listája
 	static private ArrayList<Worker> workers;
 	
-	static Map map;
-	
 	/**
 	 * Elinditja a játékot.
 	 */
-	public void startGame()
+	public void startGame(Map m)
 	{
 		//PRINT
 		System.out.println("Game - startGame called");
-		map.create();
+		m.create();
 	}
 	
 	/**
