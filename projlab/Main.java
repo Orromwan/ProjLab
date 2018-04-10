@@ -141,7 +141,7 @@ public class Main {
 		EndPos e1 = new EndPos();
 		Box b1 = new Box(f2);		
 		Worker w1 = new Worker(f1, 6);
-		Game.SetCurrentWorker(w1);
+		Game.SetStartingWorker(w1);
 		f1.addNeighbor(f2, Direction.RIGHT);
 		f2.addNeighbor(f1, Direction.LEFT);
 		f2.addNeighbor(e1, Direction.RIGHT);

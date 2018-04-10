@@ -11,40 +11,30 @@ public class Game
 {
 	// Az utoljára aktiv munkás
 	static private Worker worker;
-	
+
 	//A játékosok listája
-	static private ArrayList<Worker> workers;
-	
+	static private ArrayList<Worker> workers=new ArrayList<Worker>();
+
 	/**
-	 * Elinditja a játékot.
+	 * A játék menete
+	 * @throws InterruptedException
 	 */
-	public void startGame(Map m)
+	static void run() throws InterruptedException
 	{
-		//PRINT
-		System.out.println("Game - startGame called");
-		m.create();
-	}
-	
-	/**
-	 * Játék befejezése
-	 */
-	static void endGame()
-	{
-		//PRINT
-		System.out.println("Game - endGame called");
-	}
-	
-	public void run() throws InterruptedException
-	{
+		worker=workers.get(0);
 		while(true)
 		{
-			ChangePlayer();
 			if(HandleInput()) break;
 			Thread.sleep(2000);
+			ChangePlayer();
 		}
 	}
-	
-	boolean HandleInput()
+
+	/**
+	 * Felhasználói inputok kezelése
+	 * @return
+	 */
+	private static boolean HandleInput()
 	{
 		Scanner scin = new Scanner(System.in);
 		String s = scin.nextLine();
@@ -61,7 +51,7 @@ public class Game
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Az utoljára aktiv munkás pontjainak növelése a 
 	 * paraméterül kapott értékkel.
@@ -73,16 +63,29 @@ public class Game
 		System.out.println("Game - addPointsToLastWorker called");
 		worker.IncPoints(p);
 	}
-	
-	//Aktuális unkás beállítása;
-	static void SetCurrentWorker(Worker w)
+
+	//Aktuális unkás beállítása
+	static void SetStartingWorker(Worker w)
 	{
 		worker=w;
 	}
-	static void ChangePlayer()
+	
+	//Játékos váltása
+	private static void ChangePlayer()
 	{
 		int i = workers.indexOf(worker);
-		if(null!=workers.get(i+1)) {worker=workers.get(i+1);}
-		else{worker=workers.get(0);}
+		if(null!=workers.get(i+1))
+		{
+			worker=workers.get(i+1);
+		}
+		else
+		{
+			worker=workers.get(0);
+		}
+	}
+	
+	static void AddWorker(Worker w)
+	{
+		workers.add(w);
 	}
 }

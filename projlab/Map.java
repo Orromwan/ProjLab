@@ -7,10 +7,19 @@ package projlab;
 public class Map 
 {
 	// A mezõk
-	Field[][] fields = new Field[16][16];
-	Worker[][] workers = new Worker[16][16];
-	Box[][] boxes = new Box[16][16];
+	private Field[][] fields = new Field[16][16];
+	private Worker[][] workers = new Worker[16][16];
+	private Box[][] boxes = new Box[16][16];
 
+	/**
+	 * A pálya inicializálása a pályán lévõ elemek mátrixaival
+	 */
+	Map(Field[][] f, Worker[][] w, Box[][] b)
+	{
+		fields=f;
+		workers=w;
+		boxes=b;
+	}
 	/**
 	 * A raktár felépitése a mezõkbõl.
 	 */
@@ -26,17 +35,8 @@ public class Map
 				if(j>0) fields[i][j].addNeighbor(fields[i][j-1], Direction.DOWN);
 				if(j<16) fields[i][j].addNeighbor(fields[i][j+1], Direction.UP);
 				fields[i][j].AddWorker(workers[i][j]);
+				Game.AddWorker(workers[i][j]);
 				fields[i][j].AddBox(boxes[i][j]);
 			}
-	}
-
-	/**
-	 * Szimulálja a cselekményt.
-	 */
-	void simulate()
-	{
-		//PRINT
-		System.out.println(toString()+" - simulate called");
-
 	}
 }
