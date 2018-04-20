@@ -27,6 +27,7 @@ public class Game
 			if(HandleInput()) break;
 			Thread.sleep(2000);
 			ChangePlayer();
+			Map.draw();
 		}
 	}
 

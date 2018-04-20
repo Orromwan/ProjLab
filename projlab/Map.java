@@ -6,15 +6,19 @@ package projlab;
  */
 public class Map 
 {
+	//A map dimenziói
+	static int x=5;
+	static int y=5;
 	// A mezõk
-	private Field[][] fields = new Field[16][16];
-	private Worker[][] workers = new Worker[16][16];
-	private Box[][] boxes = new Box[16][16];
+	static private Field[][] fields = new Field[x][y];
+	static private Worker[][] workers = new Worker[x][y];
+	static private Box[][] boxes = new Box[x][y];
+	static private String[][] map = new String[x][y];
 
 	/**
 	 * A pálya inicializálása a pályán lévõ elemek mátrixaival
 	 */
-	Map(Field[][] f, Worker[][] w, Box[][] b)
+	static void initmap(Field[][] f, Worker[][] w, Box[][] b)
 	{
 		fields=f;
 		workers=w;
@@ -23,12 +27,12 @@ public class Map
 	/**
 	 * A raktár felépitése a mezõkbõl.
 	 */
-	void create()
+	static void create()
 	{
 		//PRINT
-		System.out.println(toString()+" - create called");
-		for(int i=0; i<16 ; i++)
-			for(int j=0; j<16 ; j++)
+		System.out.println("Map - create called");
+		for(int i=0; i<x ; i++)
+			for(int j=0; j<y ; j++)
 			{
 				if(i>0) fields[i][j].addNeighbor(fields[i-1][j], Direction.LEFT);
 				if(i<16) fields[i][j].addNeighbor(fields[i+1][j], Direction.RIGHT);
@@ -38,5 +42,21 @@ public class Map
 				Game.AddWorker(workers[i][j]);
 				fields[i][j].AddBox(boxes[i][j]);
 			}
+	}
+	
+	static void draw()
+	{
+		System.out.println("Map - draw called");
+		for(int i=0; i<x ; i++)
+		{
+			for(int j=0; j<y ; j++)
+			{
+				map[i][j]+=fields[i][j].getChar();
+				map[i][j]+=boxes[i][j].getChar();
+				map[i][j]+=workers[i][j].getChar();
+				System.out.print(map[i][j]);
+			}
+			System.out.print("\n");
+		}	
 	}
 }
