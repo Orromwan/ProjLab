@@ -49,4 +49,13 @@ public class Wall extends Field
 			w.kill();
 		}
 	}
+	/**
+         * Visszadja az õt reprezentáló karaktert
+         * @return a visszatérési karakter
+         */
+        @Override
+        String getChar()
+        {
+            return "X";
+        }
 }

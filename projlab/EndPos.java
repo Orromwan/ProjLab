@@ -50,4 +50,13 @@ public class EndPos extends Field
 		
 
 	}
+	/**
+         * Visszaadja az EndPost reprezentáló karaktert
+         * @return - a karakter
+         */
+        @Override
+        String getChar()
+        {
+            return "!";
+        }
 }

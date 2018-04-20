@@ -89,4 +89,13 @@ public class Switch extends Field
 			break;
 		}
 	}
+	/**
+         * Visszaadja a switchet reprezentáló karaktert 
+         * @return - a karakter
+         */
+        @Override
+        String getChar()
+        {
+            return "L";
+        }
 }

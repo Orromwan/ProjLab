@@ -40,5 +40,13 @@ public class Box {
 		currentField.removeBox(this);
 		currentField=null;
 	}
+	/**
+         * Visszaadja a Boxot reprezentáló karaktert 
+         * @return - a karakter
+         */
+        String getChar()
+        {
+            return "B";
+        }
 	
 }

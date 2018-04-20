@@ -114,4 +114,16 @@ public class Hybrid extends Field
 			}
 		}
 	}
+	/**
+         * Visszadja az õt reprezentáló karaktert állapottól függõen
+         * @return a visszatérési karakter
+         */
+        @Override
+        String getChar()
+        {
+            if (status)
+                return "O";
+            else
+                return "o";
+        }
 }

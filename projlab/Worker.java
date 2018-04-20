@@ -94,4 +94,12 @@ public class Worker
 	{
 		pos.pourOil();
 	}
+	/**
+         * Visszaadja a Workert reprezentáló karaktert 
+         * @return - a karakter
+         */
+        String getChar()
+        {
+            return "W";
+        }
 }

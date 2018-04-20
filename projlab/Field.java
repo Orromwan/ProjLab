@@ -7,7 +7,7 @@ import java.util.*;
  * a mezõ szomszédos mezõit, a rajta lévõ munkásokat,
  * és mezõ állapotát.
  */
-public class Field 
+public class Field  
 {
 	// A mezõn lévõ doboz
 	protected Box box;
@@ -192,5 +192,18 @@ public class Field
 	{
 		System.out.println(toString()+" - pourOil called");
 		liquidstate=Liquid.OIL;
+	}
+	/**
+         * Visszaadja a mezõt reprezentáló karaktert, állapottól függõen
+         * @return - a karakter amit visszaad
+         */
+	String getChar()
+	{
+		if (liquidstate == Liquid.OIL)
+                    return "_";
+                if (liquidstate == Liquid.HONEY)
+                    return ":";
+                else
+                    return ".";
 	}
 }
