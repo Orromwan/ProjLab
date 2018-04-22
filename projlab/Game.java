@@ -37,9 +37,10 @@ public class Game
 	 */
 	private static boolean HandleInput()
 	{
-		Scanner scin = new Scanner(System.in);
+		/*Scanner scin = new Scanner(System.in);
 		String s = scin.nextLine();
-		scin.close();
+		scin.close();*/
+		String s = System.console().readLine();
 		switch (s)
 		{
 		case "o": worker.pourOil();

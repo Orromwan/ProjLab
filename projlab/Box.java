@@ -1,16 +1,16 @@
 package projlab;
 
 /**
- * Doboz oszt·ly, sz·montartja az utolsÛ munk·st aki mozgatta 
- * a dobozt Ès a doboz jelenlegi mezıjÈt.  
+ * Doboz oszt√°ly, sz√°montartja az utols√≥ munk√°st aki mozgatta 
+ * a dobozt √©s a doboz jelenlegi mez√µj√©t.  
  */
 public class Box {
 	
-	// A mezı amin jelenleg van a doboz.
+	// A mez√µ amin jelenleg van a doboz.
 	private Field currentField;
 	
-	//Konstruktor, amely a mezıre helyezi a dobozt
-	public Box(Field f)
+	//Konstruktor, amely a mez√µre helyezi a dobozt
+	void InitBox(Field f)
 	{
 		f.AddBox(this);
 		currentField=f;
@@ -18,9 +18,9 @@ public class Box {
 	
 
 	/**
-	 * ¡thelyezi a dobozt a paramÈter¸l kapott cÈl mezıre,
-	 * a jelenlegi mezırıl leszedi.	
-	 * @param f - A cÈl mezı
+	 * √Åthelyezi a dobozt a param√©ter√ºl kapott c√©l mez√µre,
+	 * a jelenlegi mez√µr√µl leszedi.	
+	 * @param f - A c√©l mez√µ
 	 */
 	void UpdateBox(Field f)
 	{
@@ -31,7 +31,7 @@ public class Box {
 	}
 
 	/**
-	 * Megˆli a dobozt, leszedi az aktu·lis mezırıl.      	
+	 * Meg√∂li a dobozt, leszedi az aktu√°lis mez√µr√µl.      	
 	 */
 	void KillBox()
 	{
@@ -41,7 +41,7 @@ public class Box {
 		currentField=null;
 	}
 	/**
-         * Visszaadja a Boxot reprezent·lÛ karaktert 
+         * Visszaadja a Boxot reprezent√°l√≥ karaktert 
          * @return - a karakter
          */
         String getChar()

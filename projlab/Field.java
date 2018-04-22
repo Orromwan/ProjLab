@@ -3,37 +3,37 @@ package projlab;
 import java.util.*;
 
 /**
- * Mezı oszt·ly, sz·mon tartja a rajta lÈvı dobozt,
- * a mezı szomszÈdos mezıit, a rajta lÈvı munk·sokat,
- * Ès mezı ·llapot·t.
+ * Mez√µ oszt√°ly, sz√°mon tartja a rajta l√©v√µ dobozt,
+ * a mez√µ szomsz√©dos mez√µit, a rajta l√©v√µ munk√°sokat,
+ * √©s mez√µ √°llapot√°t.
  */
 public class Field  
 {
-	// A mezın lÈvı doboz
+	// A mez√µn l√©v√µ doboz
 	protected Box box;
 
-	// A mezı szomszÈdos mezıi
+	// A mez√µ szomsz√©dos mez√µi
 	protected Field[] neighbors = new Field[4];
 
-	// A mezın ·llÛ munk·sok list·ja
+	// A mez√µn √°ll√≥ munk√°sok list√°ja
 	protected ArrayList<Worker> workers = new ArrayList<Worker>();
 
-	// Mi van a mezın
+	// Mi van a mez√µn
 	protected FieldStatus containstate=FieldStatus.CLEAR;
 
-	// Milyen folyadÈk van a mezın
+	// Milyen folyad√©k van a mez√µn
 	protected Liquid liquidstate=Liquid.NONE;
 
-	//A p·lya ÈpÌtÈsÈhez
+	//A p√°lya √©p√≠t√©s√©hez
 	void addNeighbor(Field f, Direction d)
 	{
 		neighbors[d.getDir()]=f;
 	}
 
 	/**
-	 * Vissza adja a megadott ir·nyban lÈvı szomszÈdos mezıt
-	 * @param dir - Az ir·ny
-	 * @return - A szomszÈdos mezı
+	 * Vissza adja a megadott ir√°nyban l√©v√µ szomsz√©dos mez√µt
+	 * @param dir - Az ir√°ny
+	 * @return - A szomsz√©dos mez√µ
 	 */
 
 	Field getNeighbor(Direction dir)
@@ -43,7 +43,7 @@ public class Field
 		return neighbors[dir.getDir()];
 	}
 
-	//Munk·s hozz·ad·sa, update
+	//Munk√°s hozz√°ad√°sa, update
 	void AddWorker(Worker w)
 	{
 		workers.add(w);
@@ -51,9 +51,9 @@ public class Field
 	}
 
 	/**
-	 * Munk·s fogad·sa, munk·s mezıre lÈp/mozog.
-	 * @param w - a munk·s
-	 * @param d - ir·nybÛl Èrkezik
+	 * Munk√°s fogad√°sa, munk√°s mez√µre l√©p/mozog.
+	 * @param w - a munk√°s
+	 * @param d - ir√°nyb√≥l √©rkezik
 	 */
 	void AcceptWorker(Worker w, Direction d)
 	{
@@ -81,7 +81,7 @@ public class Field
 		}
 	}
 
-	//Doboz hozz·ad·sa, update
+	//Doboz hozz√°ad√°sa, update
 	void AddBox(Box b)
 	{
 		this.box=b;
@@ -89,10 +89,10 @@ public class Field
 	}
 
 	/**
-	 * Doboz fogad·sa, doboz erre a mezıre ker¸l.
+	 * Doboz fogad√°sa, doboz erre a mez√µre ker√ºl.
 	 * @param b - A doboz
-	 * @param d - Ebbıl az ir·nybÛl
-	 * @return - sikeres volt-e a doboz fogad·sa
+	 * @param d - Ebb√µl az ir√°nyb√≥l
+	 * @return - sikeres volt-e a doboz fogad√°sa
 	 */
 	boolean AcceptBox(Box b, Direction d, int str)
 	{
@@ -127,10 +127,10 @@ public class Field
 	}
 
 	/**
-	 * Munk·s(oka)t r· tolnak a mezıre
-	 * @param l - Munk·s/Munk·sok list·ja akik r·ker¸lnek
-	 * @param d - Ebbıl az ir·nybÛl
-	 * @return - Sikeres volt-e a mozgat·s
+	 * Munk√°s(oka)t r√° tolnak a mez√µre
+	 * @param l - Munk√°s/Munk√°sok list√°ja akik r√°ker√ºlnek
+	 * @param d - Ebb√µl az ir√°nyb√≥l
+	 * @return - Sikeres volt-e a mozgat√°s
 	 */
 	void AcceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
 	{
@@ -153,7 +153,7 @@ public class Field
 	}
 
 	/**
-	 * Doboz leszedÈse a mezırıl.
+	 * Doboz leszed√©se a mez√µr√µl.
 	 * @param b - A doboz
 	 */
 	void removeBox(Box b)
@@ -164,8 +164,8 @@ public class Field
 	}
 
 	/**
-	 * Munk·s leszedÈse a mezırıl.
-	 * @param w - A munk·s
+	 * Munk√°s leszed√©se a mez√µr√µl.
+	 * @param w - A munk√°s
 	 */
 	void removeWorker(Worker w)
 	{
@@ -177,7 +177,7 @@ public class Field
 	}
 
 	/**
-	 * MÈz ˆntÈse a mezıre
+	 * M√©z √∂nt√©se a mez√µre
 	 */
 	void pourHoney()
 	{
@@ -186,7 +186,7 @@ public class Field
 	}
 
 	/**
-	 * Olaj ˆntÈse a mezıre
+	 * Olaj √∂nt√©se a mez√µre
 	 */
 	void pourOil()
 	{
@@ -194,7 +194,7 @@ public class Field
 		liquidstate=Liquid.OIL;
 	}
 	/**
-         * Visszaadja a mezıt reprezent·lÛ karaktert, ·llapottÛl f¸ggıen
+         * Visszaadja a mez√µt reprezent√°l√≥ karaktert, √°llapott√≥l f√ºgg√µen
          * @return - a karakter amit visszaad
          */
 	String getChar()

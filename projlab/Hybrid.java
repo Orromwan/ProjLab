@@ -1,16 +1,16 @@
 package projlab;
 
 /**
- * A Hybrid mezı oszt·lya, t·rolja a mezı ·llapot·t.
+ * A Hybrid mez√µ oszt√°lya, t√°rolja a mez√µ √°llapot√°t.
  */
 public class Hybrid extends Field 
 {
-	// A hibrid ·llapot·t t·rolÛ v·ltozÛ
+	// A hibrid √°llapot√°t t√°rol√≥ v√°ltoz√≥
 	private boolean status=false;
 
 
 	/**
-	 * A hibird aktiv·l·sa, lyuk lesz.
+	 * A hibird aktiv√°l√°sa, lyuk lesz.
 	 */
 	void switchOn()
 	{
@@ -20,7 +20,7 @@ public class Hybrid extends Field
 	}	
 
 	/**
-	 *  A hibrid bez·r·sa, egyszer˚ mezı lesz.
+	 *  A hibrid bez√°r√°sa, egyszer√ª mez√µ lesz.
 	 */
 	void close()
 	{
@@ -30,10 +30,10 @@ public class Hybrid extends Field
 	}
 
 	/**
-	 * Doboz fogad·sa, doboz erre a mezıre ker¸l.
+	 * Doboz fogad√°sa, doboz erre a mez√µre ker√ºl.
 	 * @param b - A doboz
-	 * @param d - Ebbıl az ir·nybÛl
-	 * @return - sikeres volt-e a doboz fogad·sa
+	 * @param d - Ebb√µl az ir√°nyb√≥l
+	 * @return - sikeres volt-e a doboz fogad√°sa
 	 */
 	boolean AcceptBox(Box b, Direction d, int str)
 	{
@@ -77,9 +77,9 @@ public class Hybrid extends Field
 	}
 
 	/**
-	 * Munk·s fogad·sa, munk·s mezıre lÈp/mozog.
-	 * @param w - a munk·s
-	 * @param d - ir·nybÛl Èrkezik
+	 * Munk√°s fogad√°sa, munk√°s mez√µre l√©p/mozog.
+	 * @param w - a munk√°s
+	 * @param d - ir√°nyb√≥l √©rkezik
 	 */
 	void AcceptWorker(Worker w, Direction d)
 	{
@@ -115,8 +115,8 @@ public class Hybrid extends Field
 		}
 	}
 	/**
-         * Visszadja az ıt reprezent·lÛ karaktert ·llapottÛl f¸ggıen
-         * @return a visszatÈrÈsi karakter
+         * Visszadja az √µt reprezent√°l√≥ karaktert √°llapott√≥l f√ºgg√µen
+         * @return a visszat√©r√©si karakter
          */
         @Override
         String getChar()

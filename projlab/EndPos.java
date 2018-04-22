@@ -1,17 +1,17 @@
 package projlab;
 
 /**
- * VÈg poziciÛ oszt·ly, erre a mezıre dobozt tolva a munk·s
+ * V√©g pozici√≥ oszt√°ly, erre a mez√µre dobozt tolva a munk√°s
  * pontot kap.
  */
 public class EndPos extends Field 
 {
 	
 	/**
-	 * Doboz fogad·sa, doboz erre a mezıre ker¸l.
+	 * Doboz fogad√°sa, doboz erre a mez√µre ker√ºl.
 	 * @param b - A doboz
-	 * @param d - Ebbıl az ir·nybÛl
-	 * @return - sikeres volt-e a doboz fogad·sa
+	 * @param d - Ebb√µl az ir√°nyb√≥l
+	 * @return - sikeres volt-e a doboz fogad√°sa
 	 */
 	boolean AcceptBox(Box b, Direction d, int str)
 	{
@@ -51,7 +51,7 @@ public class EndPos extends Field
 
 	}
 	/**
-         * Visszaadja az EndPost reprezent·lÛ karaktert
+         * Visszaadja az EndPost reprezent√°l√≥ karaktert
          * @return - a karakter
          */
         @Override

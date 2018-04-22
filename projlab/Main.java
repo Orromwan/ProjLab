@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException {
-		System.out.println("V·lassz teszt szekvenci·t 1-10ig a sz·m megad·s·val:");
+	public static void main(String[] args) throws IOException, InterruptedException {
+		System.out.println("V√°lassz teszt szekvenci√°t 1-13ig a sz√°m megad√°s√°val:");
 
 		/*
 		String inputStr = System.console().readLine();
@@ -19,7 +19,7 @@ public class Main {
 
 
 		switch(input) {
-		case 1: seq01();break;
+/*		case 1: seq01();break;
 		case 2: seq02();break;
 		case 3: seq03();break;
 		case 4: seq04();break;
@@ -31,14 +31,42 @@ public class Main {
 		case 10: seq10();break;
 		case 11: seq11();break;
 		case 12: seq12();break;
-		case 13: seq13();break;
-		default: System.out.println("Rossz ÈrtÈk!");break;
+		case 13: seq13();break;*/
+		default: System.out.println("Rossz √©rt√©k!");
+		}
 
+		Hybrid h=new Hybrid();
+		Switch s=new Switch();
+		s.setHybrid(h);
+
+		Field[][] f= {
+				{new Wall(), new Wall(), new Wall(), new Wall(), new Wall()},
+				{new Wall(), new Field(), new Field(), new EndPos(), new Wall()},
+				{new Wall(), new Field(), new Wall(), new Field(), new Wall()},
+				{new Wall(), h,		 	s,			new Field(), new Wall()},
+				{new Wall(), new Wall(), new Wall(), new Wall(), new Wall()}};
+		Worker[][] w= {
+				{null, null, null, null, null}, 
+				{null, new Worker(), null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null}};
+		Box[][] b= {
+			{null, null, null, null, null}, 
+			{null, null, new Box(), null, null},
+			{null, null, null, null, null},
+			{null, null, null, null, null},
+			{null, null, null, null, null}};
+		
+		Map.initmap(f, w, b);
+		Map.create();
+		
+		Game.run();
 
 		}
-	}
+	
 
-	//1. Munk·s ¸res mezıre lÈp
+/*	//1. Munk√°s √ºres mez√µre l√©p
 	public static void seq01()
 	{			
 		Field f1 = new Field();
@@ -49,7 +77,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//2. Dobozt tol ‹res mezıre
+	//2. Dobozt tol √úres mez√µre
 	public static void seq02()
 	{
 		Field f1 = new Field();
@@ -95,7 +123,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//5. KapcsolÛra tol
+	//5. Kapcsol√≥ra tol
 	public static void seq05()
 	{
 		Field f1 = new Field();
@@ -114,7 +142,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//6. Letolja a kapcsolÛrÛl
+	//6. Letolja a kapcsol√≥r√≥l
 	public static void seq06()
 	{
 		Field f1 = new Field();
@@ -133,7 +161,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//7. ElfogadÛhelyre tol
+	//7. Elfogad√≥helyre tol
 	public static void seq07()
 	{
 		Field f1 = new Field();
@@ -149,7 +177,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//8. Tˆbb dobozt tol
+	//8. T√∂bb dobozt tol
 	public static void seq08()
 	{
 		Field f1 = new Field();
@@ -168,7 +196,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//9. Falnak tol tˆbb dobozt
+	//9. Falnak tol t√∂bb dobozt
 	public static void seq09()
 	{
 		Field f1 = new Field();
@@ -187,7 +215,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//10. ÷sszenyom
+	//10. √ñsszenyom
 	public static void seq10() 
 	{
 		Field f1 = new Field();
@@ -207,7 +235,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}	
 
-	//11. EnPosra lÈp
+	//11. EnPosra l√©p
 	public static void seq11()
 	{
 		Field f1 = new Field();
@@ -218,7 +246,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//12. Lyukra lÈp
+	//12. Lyukra l√©p
 	public static void seq12()
 	{
 		Field f1 = new Field();
@@ -239,5 +267,5 @@ public class Main {
 		f1.addNeighbor(wa1, Direction.RIGHT);
 		wa1.addNeighbor(f1, Direction.LEFT);
 		w1.MoveWorker(Direction.RIGHT);
-	}
+	}*/
 }

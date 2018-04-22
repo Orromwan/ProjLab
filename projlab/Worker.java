@@ -1,22 +1,22 @@
 package projlab;
 
 /**
- * A munkás osztály, tárolja a munkás pontjait
- * és azt, hogy mely mezõn áll.
+ * A munkÃ¡s osztÃ¡ly, tÃ¡rolja a munkÃ¡s pontjait
+ * Ã©s azt, hogy mely mezÃµn Ã¡ll.
  */
 public class Worker 
 {
-	// A munkás pontjai.
+	// A munkÃ¡s pontjai.
 	private int points=0;
 	
-	// A munkás ezen a mezõn áll.
+	// A munkÃ¡s ezen a mezÃµn Ã¡ll.
 	private Field pos;
 	
-	// A munkás ereje
+	// A munkÃ¡s ereje
 	private int strength;
 	
-	//Konstruktor, amely a mezõre helyezi a munkást
-	Worker(Field f, int str)
+	//Konstruktor, amely a mezÃµre helyezi a munkÃ¡st
+	void InitWorker(Field f, int str)
 	{
 		f.AddWorker(this);
 		pos=f;
@@ -24,8 +24,8 @@ public class Worker
 	}
 
 	/**
-	 * Munkás mozgatása a paraméterül kapott irányba
-	 * @param dir - Az irány
+	 * MunkÃ¡s mozgatÃ¡sa a paramÃ©terÃ¼l kapott irÃ¡nyba
+	 * @param dir - Az irÃ¡ny
 	 */
 	void MoveWorker(Direction dir)
 	{
@@ -37,8 +37,8 @@ public class Worker
 	}
 	
 	/**
-	 * Munkás átkerül a paraméterül kapott cél mezõre.
-	 * @param f - A cél mezõ
+	 * MunkÃ¡s Ã¡tkerÃ¼l a paramÃ©terÃ¼l kapott cÃ©l mezÃµre.
+	 * @param f - A cÃ©l mezÃµ
 	 */
 	void UpdateWorker(Field f)
 	{
@@ -50,8 +50,8 @@ public class Worker
 	}
 	
 	/**
-	 * Munkás pontjainak növelése a paraméterül kapott értékkel.
-	 * @param i - Az érték
+	 * MunkÃ¡s pontjainak nÃ¶velÃ©se a paramÃ©terÃ¼l kapott Ã©rtÃ©kkel.
+	 * @param i - Az Ã©rtÃ©k
 	 */
 	void IncPoints(int i)
 	{
@@ -61,7 +61,7 @@ public class Worker
 	}
 	
 	/**
-	 * Munkás megölése, lekerül az aktuális mezõrõl.
+	 * MunkÃ¡s megÃ¶lÃ©se, lekerÃ¼l az aktuÃ¡lis mezÃµrÃµl.
 	 */
 	void kill()
 	{
@@ -72,7 +72,7 @@ public class Worker
 	}
 	
 	/**
-	 * Visszaadja a munkás erejét
+	 * Visszaadja a munkÃ¡s erejÃ©t
 	 */
 	int getStrength()
 	{
@@ -80,7 +80,7 @@ public class Worker
 	}
 	
 	/**
-	 * Mézet önt az aktuális mezõre
+	 * MÃ©zet Ã¶nt az aktuÃ¡lis mezÃµre
 	 */
 	void pourHoney()
 	{
@@ -88,14 +88,14 @@ public class Worker
 	}
 	
 	/**
-	 * Olajat önt az aktuális mezõre
+	 * Olajat Ã¶nt az aktuÃ¡lis mezÃµre
 	 */
 	void pourOil()
 	{
 		pos.pourOil();
 	}
 	/**
-         * Visszaadja a Workert reprezentáló karaktert 
+         * Visszaadja a Workert reprezentÃ¡lÃ³ karaktert 
          * @return - a karakter
          */
         String getChar()

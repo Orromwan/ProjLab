@@ -1,25 +1,25 @@
 package projlab;
 
 /**
- * A Switch mezı oszt·lya, figyeli a kapcsolÛ ·llapot·t
- * Ès annak f¸ggvÈnyÈben m˚kˆdteti a hozz· tartozÛ hibrid mezıt.
+ * A Switch mez√µ oszt√°lya, figyeli a kapcsol√≥ √°llapot√°t
+ * √©s annak f√ºggv√©ny√©ben m√ªk√∂dteti a hozz√° tartoz√≥ hibrid mez√µt.
  */
 public class Switch extends Field 
 {
-	// A kapcsolÛhoz tartozÛ hybrid mezı
+	// A kapcsol√≥hoz tartoz√≥ hybrid mez√µ
 	private Hybrid hybrid;
 	
-	//A hybrid meuı be·llÌt·s·hoz
+	//A hybrid meu√µ be√°ll√≠t√°s√°hoz
 	void setHybrid(Hybrid h)
 	{
 		hybrid=h;
 	}
 	
 	/**
-	 * Doboz fogad·sa, doboz erre a mezıre ker¸l.
+	 * Doboz fogad√°sa, doboz erre a mez√µre ker√ºl.
 	 * @param b - A doboz
-	 * @param d - Ebbıl az ir·nybÛl
-	 * @return - sikeres volt-e a doboz fogad·sa
+	 * @param d - Ebb√µl az ir√°nyb√≥l
+	 * @return - sikeres volt-e a doboz fogad√°sa
 	 */
 	boolean AcceptBox(Box b, Direction d, int str)
 	{
@@ -58,9 +58,9 @@ public class Switch extends Field
 	}
 	
 	/**
-	 * Munk·s fogad·sa, munk·s mezıre lÈp/mozog.
-	 * @param w - a munk·s
-	 * @param d - ir·nybÛl Èrkezik
+	 * Munk√°s fogad√°sa, munk√°s mez√µre l√©p/mozog.
+	 * @param w - a munk√°s
+	 * @param d - ir√°nyb√≥l √©rkezik
 	 */
 	void AcceptWorker(Worker w, Direction d)
 	{
@@ -90,7 +90,7 @@ public class Switch extends Field
 		}
 	}
 	/**
-         * Visszaadja a switchet reprezent·lÛ karaktert 
+         * Visszaadja a switchet reprezent√°l√≥ karaktert 
          * @return - a karakter
          */
         @Override
