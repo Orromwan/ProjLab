@@ -9,7 +9,7 @@ public class Switch extends Field
 	// A kapcsolóhoz tartozó hybrid mezõ
 	private Hybrid hybrid;
 	
-	//A hybrid meuõ beállításához
+	//A hybrid mezõ beállításához
 	void setHybrid(Hybrid h)
 	{
 		hybrid = h;

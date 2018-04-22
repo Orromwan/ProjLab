@@ -24,9 +24,9 @@ public class Game
 		worker = workers.get(0);
 		while(true)
 		{
-			if(HandleInput()) break;
+			if(handleInput()) break;
 			Thread.sleep(2000);
-			ChangePlayer();
+			changePlayer();
 			Map.draw();
 		}
 	}
@@ -35,7 +35,7 @@ public class Game
 	 * Felhasználói inputok kezelése
 	 * @return
 	 */
-	private static boolean HandleInput()
+	private static boolean handleInput()
 	{
 		/*Scanner scin = new Scanner(System.in);
 		String s = scin.nextLine();
@@ -67,13 +67,13 @@ public class Game
 	}
 
 	//Aktuális unkás beállítása
-	static void SetStartingWorker(Worker w)
+	static void setStartingWorker(Worker w)
 	{
 		worker = w;
 	}
 	
 	//Játékos váltása
-	private static void ChangePlayer()
+	private static void changePlayer()
 	{
 		int i = workers.indexOf(worker);
 		if(workers.get(i + 1) != null)
@@ -86,7 +86,7 @@ public class Game
 		}
 	}
 	
-	static void AddWorker(Worker w)
+	static void addWorker(Worker w)
 	{
 		workers.add(w);
 	}

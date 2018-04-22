@@ -17,54 +17,57 @@ public class Main {
 		int input = scin.nextInt();
 		scin.close();
 
-
-
+		Map map = new Map();
 
 		switch(input) {
-/*		case 1: seq01();break;
-		case 2: seq02();break;
-		case 3: seq03();break;
-		case 4: seq04();break;
-		case 5: seq05();break;
-		case 6: seq06();break;
-		case 7: seq07();break;
-		case 8: seq08();break;
-		case 9: seq09();break;
-		case 10: seq10();break;
-		case 11: seq11();break;
-		case 12: seq12();break;
-		case 13: seq13();break;*/
-		default: System.out.println("Rossz érték!");
+	/*		case 1: seq01();break;
+			case 2: seq02();break;
+			case 3: seq03();break;
+			case 4: seq04();break;
+			case 5: seq05();break;
+			case 6: seq06();break;
+			case 7: seq07();break;
+			case 8: seq08();break;
+			case 9: seq09();break;
+			case 10: seq10();break;
+			case 11: seq11();break;
+			case 12: seq12();break;
+			case 13: seq13();break;*/
+			default: System.out.println("Rossz érték!");
 		}
+		
+		map.initMapFromFile("test.txt");
 
-		Hybrid h=new Hybrid();
-		Switch s=new Switch();
+		Hybrid h = new Hybrid();
+		Switch s = new Switch();
 		s.setHybrid(h);
 
 		Field[][] f= {
-				{new Wall(), new Wall(), new Wall(), new Wall(), new Wall()},
+				{new Wall(), new Wall(),  new Wall(),  new Wall(),   new Wall()},
 				{new Wall(), new Field(), new Field(), new EndPos(), new Wall()},
-				{new Wall(), new Field(), new Wall(), new Field(), new Wall()},
-				{new Wall(), h,		 	s,			new Field(), new Wall()},
-				{new Wall(), new Wall(), new Wall(), new Wall(), new Wall()}};
+				{new Wall(), new Field(), new Wall(),  new Field(),  new Wall()},
+				{new Wall(), h,		 	  s,		   new Field(),  new Wall()},
+				{new Wall(), new Wall(),  new Wall(),  new Wall(),   new Wall()}};
 		Worker[][] w= {
-				{null, null, null, null, null}, 
+				{null, null,         null, null, null}, 
 				{null, new Worker(), null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null}};
+				{null, null,         null, null, null},
+				{null, null,         null, null, null},
+				{null, null,         null, null, null}};
 		Box[][] b= {
-			{null, null, null, null, null}, 
+			{null, null, null,      null, null}, 
 			{null, null, new Box(), null, null},
-			{null, null, null, null, null},
-			{null, null, null, null, null},
-			{null, null, null, null, null}};
+			{null, null, null,      null, null},
+			{null, null, null,      null, null},
+			{null, null, null,      null, null}};
 		
-		Map.initmap(f, w, b);
-		Map.create();
+		//Map.initMap(f, w, b);
+		//Map.create();
+		map.create();
 		
-		Game.run();
+		//Game.run();
 
+		
 		}
 }
 /*

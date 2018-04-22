@@ -10,7 +10,7 @@ public class Hybrid extends Field
 
 
 	/**
-	 * A hibird aktiválása, lyuk lesz.
+	 * A hibrid aktiválása, lyuk lesz.
 	 */
 	void switchOn()
 	{

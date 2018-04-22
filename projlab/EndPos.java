@@ -60,6 +60,9 @@ public class EndPos extends Field
         @Override
         String getChar()
         {
-            return "!";
+        	if(containstate == FieldStatus.BOX && box != null)
+        		return "!";
+        	else
+        		return "?";
         }
 }
