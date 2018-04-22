@@ -45,11 +45,11 @@ public class Map
 				if(j < x - 1) Fields[i][j].addNeighbor(Fields[i][j + 1], Direction.RIGHT);
 				if(Workers[i][j] != null)
 				{
-					Workers[i][j].InitWorker(Fields[i][j], 3);
+					Workers[i][j].initWorker(Fields[i][j], 3);
 					Game.addWorker(Workers[i][j]);
 				}
 				if(Boxes[i][j] != null)	
-					Boxes[i][j].InitBox(Fields[i][j]);
+					Boxes[i][j].initBox(Fields[i][j]);
 			}
 		draw();
 	}
@@ -99,7 +99,7 @@ public class Map
                 	Boxes = new Box[rowCount][rowCount];
                 	Map = new String[rowCount][rowCount];
                 }
-                //teszteléshez
+                // A beolvasott pálya
                 System.out.println(line);
                 
                 for(int i = 0; i < rowCount; i++)
@@ -138,8 +138,11 @@ public class Map
                 		Fields[i][columnIndex] = new Field();
                 		break;
                 	default:
+                		Fields[i][columnIndex] = new Field();
                 		break;
                 	}
+            		Fields[i][columnIndex].setXPos(columnIndex);
+            		Fields[i][columnIndex].setYPos(i);
                 }
                 columnIndex++;
             }
@@ -156,12 +159,8 @@ public class Map
         }
 	}
 	
-	private boolean isValidMapChar(char c)
+	public static void update(int oldX, int oldY, String oldField, int newX, int newY, String newField)
 	{
-		if(c == 'X' || c == 'B' || c == 'W' || c == 'O' || c == 'o' ||
-				c == 'L' || c == ':' || c == '_' || c == '.' || c == '?' || c == '!')
-			return true;
-		else
-			return false;
+		
 	}
 }

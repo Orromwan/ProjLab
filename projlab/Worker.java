@@ -7,57 +7,57 @@ package projlab;
 public class Worker 
 {
 	// A munkás pontjai.
-	private int points = 0;
+	private int Points = 0;
 	
 	// A munkás ezen a mezõn áll.
-	private Field pos;
+	private Field Position;
 	
 	// A munkás ereje
-	private int strength;
+	private int Strength;
 	
 	//Konstruktor, amely a mezõre helyezi a munkást
-	void InitWorker(Field f, int str)
+	void initWorker(Field f, int str)
 	{
-		f.AddWorker(this);
-		pos = f;
-		strength = str;
+		f.addWorker(this);
+		Position = f;
+		Strength = str;
 	}
 
 	/**
 	 * Munkás mozgatása a paraméterül kapott irányba
 	 * @param dir - Az irány
 	 */
-	void MoveWorker(Direction dir)
+	boolean moveWorker(Direction dir)
 	{
 		//PRINT
-		System.out.println(toString() + " - MoveWorker called");
-		Field f = pos.getNeighbor(dir);
+		System.out.println(toString() + " - moveWorker called");
+		Field f = Position.getNeighbor(dir);
 		
-		f.AcceptWorker(this, dir);	
+		return f.acceptWorker(this, dir);	
 	}
 	
 	/**
 	 * Munkás átkerül a paraméterül kapott cél mezõre.
 	 * @param f - A cél mezõ
 	 */
-	void UpdateWorker(Field f)
+	void updateWorker(Field f)
 	{
 		//PRINT
-		System.out.println(toString() + " - UpdateWorker called");
+		System.out.println(toString() + " - updateWorker called");
 		
-		pos.removeWorker(this);
-		pos = f;
+		Position.removeWorker(this);
+		Position = f;
 	}
 	
 	/**
 	 * Munkás pontjainak növelése a paraméterül kapott értékkel.
 	 * @param i - Az érték
 	 */
-	void IncPoints(int i)
+	void incPoints(int i)
 	{
 		//PRINT
-		System.out.println(toString() + " - IncPoints called");
-		points += i;
+		System.out.println(toString() + " - incPoints called");
+		Points += i;
 	}
 	
 	/**
@@ -67,8 +67,8 @@ public class Worker
 	{
 		//PRINT
 		System.out.println(toString() + " - kill called");
-		pos.removeWorker(this);
-		pos = null;
+		Position.removeWorker(this);
+		Position = null;
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class Worker
 	 */
 	int getStrength()
 	{
-		return strength;
+		return Strength;
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class Worker
 	 */
 	void pourHoney()
 	{
-		pos.pourHoney();	
+		Position.pourHoney();	
 	}
 	
 	/**
@@ -92,7 +92,7 @@ public class Worker
 	 */
 	void pourOil()
 	{
-		pos.pourOil();
+		Position.pourOil();
 	}
 	/**
      * Visszaadja a Workert reprezentáló karaktert 
@@ -101,5 +101,10 @@ public class Worker
     String getChar()
     {
         return "W";
+    }
+    
+    public Field getPosition()
+    {
+    	return Position;
     }
 }

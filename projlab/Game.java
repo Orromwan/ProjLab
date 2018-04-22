@@ -9,19 +9,23 @@ import java.util.Scanner;
  */
 public class Game
 {
+	// A pálya
+	static private Map Map;
+	
 	// Az utoljára aktiv munkás
-	static private Worker worker;
+	static private Worker Worker;
 
 	//A játékosok listája
-	static private ArrayList<Worker> workers = new ArrayList<Worker>();
+	static private ArrayList<Worker> Workers = new ArrayList<Worker>();
 
 	/**
 	 * A játék menete
 	 * @throws InterruptedException
 	 */
-	static void run() throws InterruptedException
+	static void run(Map map) throws InterruptedException
 	{
-		worker = workers.get(0);
+		Map = map;
+		Worker = Workers.get(0);
 		while(true)
 		{
 			if(handleInput()) break;
@@ -40,20 +44,44 @@ public class Game
 		/*Scanner scin = new Scanner(System.in);
 		String s = scin.nextLine();
 		scin.close();*/
+		/*InputStreamReader streamReader = new InputStreamReader(System.in);
+	    BufferedReader bufferedReader = new BufferedReader(streamReader);
+	    String s = bufferedReader.readLine();*/
 		String s = System.console().readLine();
 		switch (s)
 		{
-		case "o": worker.pourOil();
-		case "h": worker.pourHoney();
-		case "w": worker.MoveWorker(Direction.UP);
-		case "a": worker.MoveWorker(Direction.LEFT);
-		case "s": worker.MoveWorker(Direction.DOWN);
-		case "d": worker.MoveWorker(Direction.RIGHT);
-		case "e": return true;
+		case "o":
+			Worker.pourOil();
+		case "h":
+			Worker.pourHoney();
+		case "w":
+			/*
+			if(Worker.moveWorker(Direction.UP))
+			{
+				newField = Worker.getPosition();
+				updateMapWorker(oldField, newField);
+			}
+			*/
+			Worker.moveWorker(Direction.UP);
+		case "a":
+			Worker.moveWorker(Direction.LEFT);
+		case "s":
+			Worker.moveWorker(Direction.DOWN);
+		case "d":
+			Worker.moveWorker(Direction.RIGHT);
+		case "e":
+			return true;
 		}
+		Map.draw();
 		return false;
 	}
-
+	/*private static void updateMapWorker(Field oldField, Field newField)
+	{
+		int oldXPos = oldField.getXPos();
+		int oldYPos = oldField.getYPos();
+		int newXPos = newField.getXPos();
+		int newYPos = newField.getYPos();
+	}*/
 	/**
 	 * Az utoljára aktiv munkás pontjainak növelése a 
 	 * paraméterül kapott értékkel.
@@ -63,31 +91,31 @@ public class Game
 	{
 		//PRINT
 		System.out.println("Game - addPointsToLastWorker called");
-		worker.IncPoints(p);
+		Worker.incPoints(p);
 	}
 
 	//Aktuális unkás beállítása
 	static void setStartingWorker(Worker w)
 	{
-		worker = w;
+		Worker = w;
 	}
 	
 	//Játékos váltása
 	private static void changePlayer()
 	{
-		int i = workers.indexOf(worker);
-		if(workers.get(i + 1) != null)
+		int i = Workers.indexOf(Worker);
+		if(Workers.get(i + 1) != null)
 		{
-			worker = workers.get(i + 1);
+			Worker = Workers.get(i + 1);
 		}
 		else
 		{
-			worker = workers.get(0);
+			Worker = Workers.get(0);
 		}
 	}
 	
 	static void addWorker(Worker w)
 	{
-		workers.add(w);
+		Workers.add(w);
 	}
 }

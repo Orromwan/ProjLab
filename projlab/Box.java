@@ -7,13 +7,13 @@ package projlab;
 public class Box {
 	
 	// A mezõ amin jelenleg van a doboz.
-	private Field currentField;
+	private Field CurrentField;
 	
 	//Konstruktor, amely a mezõre helyezi a dobozt
-	void InitBox(Field f)
+	void initBox(Field f)
 	{
-		f.AddBox(this);
-		currentField = f;
+		f.addBox(this);
+		CurrentField = f;
 	}
 	
 
@@ -22,12 +22,12 @@ public class Box {
 	 * a jelenlegi mezõrõl leszedi.	
 	 * @param f - A cél mezõ
 	 */
-	void UpdateBox(Field f)
+	void updateBox(Field f)
 	{
 		//PRINT
 		System.out.println(toString() + " - UpdateBox called");
-		currentField.removeBox(this);
-		currentField = f;
+		CurrentField.removeBox(this);
+		CurrentField = f;
 	}
 
 	/**
@@ -37,8 +37,8 @@ public class Box {
 	{
 		//PRINT
 		System.out.println(toString() + " - KillBox called");
-		currentField.removeBox(this);
-		currentField = null;
+		CurrentField.removeBox(this);
+		CurrentField = null;
 	}
 	/**
          * Visszaadja a Boxot reprezentáló karaktert 

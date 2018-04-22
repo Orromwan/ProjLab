@@ -6,7 +6,7 @@ package projlab;
 public class Hybrid extends Field 
 {
 	// A hibrid állapotát tároló változó
-	private boolean status = false;
+	private boolean Status = false;
 
 
 	/**
@@ -16,7 +16,7 @@ public class Hybrid extends Field
 	{
 		//PRINT
 		System.out.println(toString() + " - switchOn called");
-		status = true;
+		Status = true;
 	}	
 
 	/**
@@ -26,7 +26,7 @@ public class Hybrid extends Field
 	{
 		//PRINT
 		System.out.println(toString() + " - close called");
-		status = false;
+		Status = false;
 	}
 
 	/**
@@ -35,44 +35,44 @@ public class Hybrid extends Field
 	 * @param d - Ebbõl az irányból
 	 * @return - sikeres volt-e a doboz fogadása
 	 */
-	boolean AcceptBox(Box b, Direction d, int str)
+	boolean acceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptBox called");
-		if(status)
+		System.out.println(toString() + " - acceptBox called");
+		if(Status)
 		{
 			b.KillBox();
 		}
 		else
 		{
-			switch(containstate)
+			switch(Containstate)
 			{
 			case BOX:
 				
-				int fr = liquidstate.friction();
+				int fr = Liquidstate.friction();
 				boolean r = str >= fr;
 				if(r)
 				{
-					r = neighbors[d.getDir()].AcceptBox(box, d, str - fr);
+					r = Neighbors[d.getDir()].acceptBox(Box, d, str - fr);
 					if(r)
 					{
-						b.UpdateBox(this);
-						AddBox(b);
+						b.updateBox(this);
+						addBox(b);
 					}
 				}
 				return r;
 
 			case WORKERS:
 
-				AcceptUnwillingWorkers(workers, d);
-				b.UpdateBox(this);
-				AddBox(b);
+				acceptUnwillingWorkers(Workers, d);
+				b.updateBox(this);
+				addBox(b);
 				return true;
 
 			default:
 
-				b.UpdateBox(this);
-				AddBox(b);
+				b.updateBox(this);
+				addBox(b);
 				return true;
 			}
 		}
@@ -84,38 +84,40 @@ public class Hybrid extends Field
 	 * @param w - a munkás
 	 * @param d - irányból érkezik
 	 */
-	void AcceptWorker(Worker w, Direction d)
+	boolean acceptWorker(Worker w, Direction d)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptWorker called");
-		if(status)
+		System.out.println(toString() + " - acceptWorker called");
+		if(Status)
 		{
 			w.kill();
+			return false;
 		}
 		else
 		{
-			switch(containstate)
+			switch(Containstate)
 			{
 			case BOX:
 				
 				int str = w.getStrength();
-				int fr = liquidstate.friction();
+				int fr = Liquidstate.friction();
 				boolean r = str >= fr;
 				if(r)
 				{
-					if(neighbors[d.getDir()].AcceptBox(box, d, str))
+					if(Neighbors[d.getDir()].acceptBox(Box, d, str))
 					{
-						w.UpdateWorker(this);
-						AddWorker(w);
+						w.updateWorker(this);
+						addWorker(w);
+						return true;
 					}
+					else return false;
 				}
-				break;
+				else return false;
 
 			default:
-
-				w.UpdateWorker(this);
-				AddWorker(w);
-				break;
+				w.updateWorker(this);
+				addWorker(w);
+				return true;
 			}
 		}
 	}
@@ -126,7 +128,7 @@ public class Hybrid extends Field
         @Override
         String getChar()
         {
-            if (status)
+            if (Status)
                 return "O";
             else
                 return "o";

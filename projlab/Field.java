@@ -9,25 +9,29 @@ import java.util.*;
  */
 public class Field  
 {
+	// A mezõ pozíciója a térképen
+	protected int xPos;
+	protected int yPos;
+	
 	// A mezõn lévõ doboz
-	protected Box box;
+	protected Box Box;
 
 	// A mezõ szomszédos mezõi
-	protected Field[] neighbors = new Field[4];
+	protected Field[] Neighbors = new Field[4];
 
 	// A mezõn álló munkások listája
-	protected ArrayList<Worker> workers = new ArrayList<Worker>();
+	protected ArrayList<Worker> Workers = new ArrayList<Worker>();
 
 	// Mi van a mezõn
-	protected FieldStatus containstate = FieldStatus.CLEAR;
+	protected FieldStatus Containstate = FieldStatus.CLEAR;
 
 	// Milyen folyadék van a mezõn
-	protected Liquid liquidstate = Liquid.NONE;
+	protected Liquid Liquidstate = Liquid.NONE;
 
 	//A pálya építéséhez
 	void addNeighbor(Field f, Direction d)
 	{
-		neighbors[d.getDir()] = f;
+		Neighbors[d.getDir()] = f;
 	}
 
 	/**
@@ -40,14 +44,14 @@ public class Field
 	{
 		//PRINT
 		System.out.println(toString() + " - getNeighbor called");
-		return neighbors[dir.getDir()];
+		return Neighbors[dir.getDir()];
 	}
 
 	//Munkás hozzáadása, update
-	void AddWorker(Worker w)
+	void addWorker(Worker w)
 	{
-		workers.add(w);
-		containstate = FieldStatus.WORKERS;
+		Workers.add(w);
+		Containstate = FieldStatus.WORKERS;
 	}
 
 	/**
@@ -55,39 +59,35 @@ public class Field
 	 * @param w - a munkás
 	 * @param d - irányból érkezik
 	 */
-	void AcceptWorker(Worker w, Direction d)
+	boolean acceptWorker(Worker w, Direction d)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptWorker called");
-		switch(containstate)
+		System.out.println(toString() + " - acceptWorker called");
+		switch(Containstate)
 		{
 		case BOX:
 			int str = w.getStrength();
-			int fr = liquidstate.friction();
-			boolean r = str >= fr;
+			int fr = Liquidstate.friction();
+			boolean r = (str >= fr) && (Neighbors[d.getDir()].acceptBox(Box, d, str));
 			if(r)
 			{
-				if(neighbors[d.getDir()].AcceptBox(box, d, str))
-				{
-					w.UpdateWorker(this);
-					AddWorker(w);
-				}
-			}				
-			break;
+				w.updateWorker(this);
+				addWorker(w);
+			}
+			return r;
 
 		default:
-
-			w.UpdateWorker(this);
-			AddWorker(w);
-			break;
+			w.updateWorker(this);
+			addWorker(w);
+			return true;
 		}
 	}
 
 	//Doboz hozzáadása, update
-	void AddBox(Box b)
+	void addBox(Box b)
 	{
-		this.box = b;
-		containstate = FieldStatus.BOX;
+		this.Box = b;
+		Containstate = FieldStatus.BOX;
 	}
 
 	/**
@@ -96,37 +96,33 @@ public class Field
 	 * @param d - Ebbõl az irányból
 	 * @return - sikeres volt-e a doboz fogadása
 	 */
-	boolean AcceptBox(Box b, Direction d, int str)
+	boolean acceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptBox called");
-		switch(containstate)
+		System.out.println(toString() + " - acceptBox called");
+		switch(Containstate)
 		{
 		case BOX:
-			int fr = liquidstate.friction();
-			boolean r = str >= fr;
+			int fr = Liquidstate.friction();
+			boolean r = (str >= fr) && (Neighbors[d.getDir()].acceptBox(Box, d, str - fr));
 			if(r)
-			{
-				r = neighbors[d.getDir()].AcceptBox(box, d, str - fr);
-				if(r)
-				{
-					b.UpdateBox(this);
-					AddBox(b);
-				}
+			{		
+				b.updateBox(this);
+				addBox(b);
 			}
 			return r;
 
 		case WORKERS:
 
-			neighbors[d.getDir()].AcceptUnwillingWorkers(workers, d);
-			b.UpdateBox(this);
-			AddBox(b);
+			Neighbors[d.getDir()].acceptUnwillingWorkers(Workers, d);
+			b.updateBox(this);
+			addBox(b);
 			return true;
 
 		default:
 
-			b.UpdateBox(this);
-			AddBox(b);
+			b.updateBox(this);
+			addBox(b);
 			return true;
 		}
 	}
@@ -137,11 +133,11 @@ public class Field
 	 * @param d - Ebbõl az irányból
 	 * @return - Sikeres volt-e a mozgatás
 	 */
-	void AcceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
+	void acceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptUnwillingWorkers called");
-		switch(containstate)
+		System.out.println(toString() + " - acceptUnwillingWorkers called");
+		switch(Containstate)
 		{
 		case BOX:
 
@@ -152,7 +148,7 @@ public class Field
 		default:
 
 			for(Worker w : l)
-				AcceptWorker(w, d);
+				acceptWorker(w, d);
 			break;
 		}
 	}
@@ -165,7 +161,7 @@ public class Field
 	{
 		//PRINT
 		System.out.println(toString() + " - removeBox called");
-		containstate = FieldStatus.CLEAR;
+		Containstate = FieldStatus.CLEAR;
 	}
 
 	/**
@@ -176,9 +172,9 @@ public class Field
 	{
 		//PRINT
 		System.out.println(toString() + " - removeWorker called");
-		workers.remove(w);
-		if(workers.isEmpty())
-			containstate = FieldStatus.CLEAR;
+		Workers.remove(w);
+		if(Workers.isEmpty())
+			Containstate = FieldStatus.CLEAR;
 	}
 
 	/**
@@ -187,7 +183,7 @@ public class Field
 	void pourHoney()
 	{
 		System.out.println(toString() + " - pourHoney called");
-		liquidstate = Liquid.HONEY;
+		Liquidstate = Liquid.HONEY;
 	}
 
 	/**
@@ -196,7 +192,7 @@ public class Field
 	void pourOil()
 	{
 		System.out.println(toString() + " - pourOil called");
-		liquidstate = Liquid.OIL;
+		Liquidstate = Liquid.OIL;
 	}
 	/**
          * Visszaadja a mezõt reprezentáló karaktert, állapottól függõen
@@ -204,11 +200,27 @@ public class Field
          */
 	String getChar()
 	{
-		if (liquidstate == Liquid.OIL)
+		if (Liquidstate == Liquid.OIL)
             return "_";
-		else if (liquidstate == Liquid.HONEY)
+		else if (Liquidstate == Liquid.HONEY)
             return ":";
         else
             return ".";
-}
+	}
+	public void setXPos(int x)
+	{
+		xPos = x;
+	}
+	public void setYPos(int y)
+	{
+		yPos = y;
+	}
+	public int getXPos()
+	{
+		return xPos;
+	}
+	public int getYPos()
+	{
+		return yPos;
+	}
 }

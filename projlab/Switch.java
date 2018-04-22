@@ -7,12 +7,12 @@ package projlab;
 public class Switch extends Field 
 {
 	// A kapcsolóhoz tartozó hybrid mezõ
-	private Hybrid hybrid;
+	private Hybrid Hybrid;
 	
 	//A hybrid mezõ beállításához
 	void setHybrid(Hybrid h)
 	{
-		hybrid = h;
+		Hybrid = h;
 	}
 	
 	/**
@@ -21,41 +21,41 @@ public class Switch extends Field
 	 * @param d - Ebbõl az irányból
 	 * @return - sikeres volt-e a doboz fogadása
 	 */
-	boolean AcceptBox(Box b, Direction d, int str)
+	boolean acceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptBox called");
-		switch(containstate)
+		System.out.println(toString() + " - acceptBox called");
+		switch(Containstate)
 		{
 		case BOX:
 
-			int fr = liquidstate.friction();
+			int fr = Liquidstate.friction();
 			boolean r = str >= fr;
 			if(r)
 			{
-				r = neighbors[d.getDir()].AcceptBox(box, d, str - fr);
+				r = Neighbors[d.getDir()].acceptBox(Box, d, str - fr);
 				if(r)
 				{
-					b.UpdateBox(this);
-					AddBox(b);
-					hybrid.switchOn();
+					b.updateBox(this);
+					addBox(b);
+					Hybrid.switchOn();
 				}
 			}
 			return r;
 
 		case WORKERS:
 						
-			AcceptUnwillingWorkers(workers, d);
-			b.UpdateBox(this);
-			AddBox(b);
-			hybrid.switchOn();
+			acceptUnwillingWorkers(Workers, d);
+			b.updateBox(this);
+			addBox(b);
+			Hybrid.switchOn();
 			return true;
 
 		default:
 			
-			b.UpdateBox(this);
-			AddBox(b);
-			hybrid.switchOn();
+			b.updateBox(this);
+			addBox(b);
+			Hybrid.switchOn();
 			return true;
 		}
 	}
@@ -65,33 +65,34 @@ public class Switch extends Field
 	 * @param w - a munkás
 	 * @param d - irányból érkezik
 	 */
-	void AcceptWorker(Worker w, Direction d)
+	boolean acceptWorker(Worker w, Direction d)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptWorker called");
-		switch(containstate)
+		System.out.println(toString() + " - acceptWorker called");
+		switch(Containstate)
 		{
 		case BOX:
 			
 			int str = w.getStrength();
-			int fr = liquidstate.friction();
+			int fr = Liquidstate.friction();
 			boolean r = str >= fr;
 			if(r)
 			{
-				if(neighbors[d.getDir()].AcceptBox(box, d, str))
+				if(Neighbors[d.getDir()].acceptBox(Box, d, str))
 				{
-					w.UpdateWorker(this);
-					AddWorker(w);
-					hybrid.close();
+					w.updateWorker(this);
+					addWorker(w);
+					Hybrid.close();
+					return true;
 				}
+				else return false;
 			}
-			break;
+			else return false;
 
 		default:
-			
-			w.UpdateWorker(this);
-			AddWorker(w);
-			break;
+			w.updateWorker(this);
+			addWorker(w);
+			return true;
 		}
 	}
 	/**

@@ -14,10 +14,10 @@ public class Wall extends Field
 	 * @param d - Ebbõl az irányból
 	 * @return - sikeres volt-e a doboz fogadása
 	 */
-	boolean AcceptBox(Box b, Direction d, int str)
+	boolean acceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptBox called");
+		System.out.println(toString() + " - acceptBox called");
 		// Falra sose tolhatunk dobozt.
 		return false;
 	}
@@ -27,11 +27,12 @@ public class Wall extends Field
 	 * @param w - a munkás
 	 * @param d - irányból érkezik
 	 */
-	void AcceptWorker(Worker w, Direction d)
+	boolean acceptWorker(Worker w, Direction d)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptWorker called");
+		System.out.println(toString() + " - acceptWorker called");
 		// Munkással nem léphetünk falra.
+		return false;
 	}
 
 	/**
@@ -40,10 +41,10 @@ public class Wall extends Field
 	 * @param d - Ebbõl az irányból
 	 * @return - Sikeres volt-e a mozgatás
 	 */
-	void AcceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
+	void acceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptUnwillingWorkers called");
+		System.out.println(toString() + " - acceptUnwillingWorkers called");
 		for(Worker w : l)
 		{
 			w.kill();

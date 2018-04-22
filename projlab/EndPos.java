@@ -13,23 +13,23 @@ public class EndPos extends Field
 	 * @param d - Ebbõl az irányból
 	 * @return - sikeres volt-e a doboz fogadása
 	 */
-	boolean AcceptBox(Box b, Direction d, int str)
+	boolean acceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
-		System.out.println(toString() + " - AcceptBox called");
-		switch(containstate)
+		System.out.println(toString() + " - acceptBox called");
+		switch(Containstate)
 		{
 		case BOX:
 			
-			int fr = liquidstate.friction();
+			int fr = Liquidstate.friction();
 			boolean r = str >= fr;
 			if(r)
 			{
-				r = neighbors[d.getDir()].AcceptBox(box, d, str - fr);
+				r = Neighbors[d.getDir()].acceptBox(Box, d, str - fr);
 				if(r)
 				{
-					b.UpdateBox(this);
-					AddBox(b);
+					b.updateBox(this);
+					addBox(b);
 					Game.addPointsToLastWorker(1);
 				}
 			}
@@ -37,16 +37,16 @@ public class EndPos extends Field
 
 		case WORKERS:
 			
-			AcceptUnwillingWorkers(workers, d);
-			b.UpdateBox(this);
-			AddBox(b);
+			acceptUnwillingWorkers(Workers, d);
+			b.updateBox(this);
+			addBox(b);
 			Game.addPointsToLastWorker(1);
 			return true;
 
 		default:
 			
-			b.UpdateBox(this);
-			AddBox(b);
+			b.updateBox(this);
+			addBox(b);
 			Game.addPointsToLastWorker(1);
 			return true;
 		}
@@ -60,7 +60,7 @@ public class EndPos extends Field
         @Override
         String getChar()
         {
-        	if(containstate == FieldStatus.BOX && box != null)
+        	if(Containstate == FieldStatus.BOX && Box != null)
         		return "!";
         	else
         		return "?";

@@ -8,10 +8,8 @@ public class Main {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		System.out.println("Válassz teszt szekvenciát 1-10ig a szám megadásával:");
 
-		/*
-		String inputStr = System.console().readLine();
-		int input = Integer.parseInt(inputStr);
-		 */
+		/*String inputStr = System.console().readLine();
+		int input = Integer.parseInt(inputStr);*/
 
 		Scanner scin = new Scanner(System.in);
 		int input = scin.nextInt();
@@ -20,7 +18,7 @@ public class Main {
 		Map map = new Map();
 
 		switch(input) {
-	/*		case 1: seq01();break;
+		/*case 1: seq01();break;
 			case 2: seq02();break;
 			case 3: seq03();break;
 			case 4: seq04();break;
@@ -38,7 +36,7 @@ public class Main {
 		
 		map.initMapFromFile("test.txt");
 
-		Hybrid h = new Hybrid();
+		/*Hybrid h = new Hybrid();
 		Switch s = new Switch();
 		s.setHybrid(h);
 
@@ -59,13 +57,13 @@ public class Main {
 			{null, null, new Box(), null, null},
 			{null, null, null,      null, null},
 			{null, null, null,      null, null},
-			{null, null, null,      null, null}};
+			{null, null, null,      null, null}};*/
 		
 		//Map.initMap(f, w, b);
 		//Map.create();
 		map.create();
 		
-		//Game.run();
+		Game.run(map);
 
 		
 		}

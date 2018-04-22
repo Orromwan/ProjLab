@@ -6,15 +6,15 @@ public enum Liquid
 	HONEY(3),
 	OIL(1);
 
-	private int f;
+	private int F;
 
 	Liquid(int i)
 	{
-		f = i;
+		F = i;
 	}
 
 	int friction()
 	{
-		return f;
+		return F;
 	}
 }

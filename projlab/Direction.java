@@ -7,15 +7,15 @@ public enum Direction
 	DOWN(2),
 	UP(0);
 	
-	private int d;
+	private int D;
 	
 	Direction(int i)
 	{
-		d = i;
+		D = i;
 	}
 	
 	int getDir()
 	{
-		return d;
+		return D;
 	}
 }
