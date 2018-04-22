@@ -10,7 +10,7 @@ public enum Liquid
 
 	Liquid(int i)
 	{
-		f=i;
+		f = i;
 	}
 
 	int friction()

@@ -3,112 +3,115 @@ package projlab;
 import java.util.*;
 
 /**
- * Mez√µ oszt√°ly, sz√°mon tartja a rajta l√©v√µ dobozt,
- * a mez√µ szomsz√©dos mez√µit, a rajta l√©v√µ munk√°sokat,
- * √©s mez√µ √°llapot√°t.
+ * Mezı oszt·ly, sz·mon tartja a rajta lÈvı dobozt,
+ * a mezı szomszÈdos mezıit, a rajta lÈvı munk·sokat,
+ * Ès mezı ·llapot·t.
  */
 public class Field  
 {
-	// A mez√µn l√©v√µ doboz
+	// A mezın lÈvı doboz
 	protected Box box;
 
-	// A mez√µ szomsz√©dos mez√µi
+	// A mezı szomszÈdos mezıi
 	protected Field[] neighbors = new Field[4];
 
-	// A mez√µn √°ll√≥ munk√°sok list√°ja
+	// A mezın ·llÛ munk·sok list·ja
 	protected ArrayList<Worker> workers = new ArrayList<Worker>();
 
-	// Mi van a mez√µn
-	protected FieldStatus containstate=FieldStatus.CLEAR;
+	// Mi van a mezın
+	protected FieldStatus containstate = FieldStatus.CLEAR;
 
-	// Milyen folyad√©k van a mez√µn
-	protected Liquid liquidstate=Liquid.NONE;
+	// Milyen folyadÈk van a mezın
+	protected Liquid liquidstate = Liquid.NONE;
 
-	//A p√°lya √©p√≠t√©s√©hez
+	//A p·lya ÈpÌtÈsÈhez
 	void addNeighbor(Field f, Direction d)
 	{
-		neighbors[d.getDir()]=f;
+		neighbors[d.getDir()] = f;
 	}
 
 	/**
-	 * Vissza adja a megadott ir√°nyban l√©v√µ szomsz√©dos mez√µt
-	 * @param dir - Az ir√°ny
-	 * @return - A szomsz√©dos mez√µ
+	 * Vissza adja a megadott ir·nyban lÈvı szomszÈdos mezıt
+	 * @param dir - Az ir·ny
+	 * @return - A szomszÈdos mezı
 	 */
 
 	Field getNeighbor(Direction dir)
 	{
 		//PRINT
-		System.out.println(toString()+" - getNeighbor called");
+		System.out.println(toString() + " - getNeighbor called");
 		return neighbors[dir.getDir()];
 	}
 
-	//Munk√°s hozz√°ad√°sa, update
+	//Munk·s hozz·ad·sa, update
 	void AddWorker(Worker w)
 	{
 		workers.add(w);
-		containstate=FieldStatus.WORKERS;
+		containstate = FieldStatus.WORKERS;
 	}
 
 	/**
-	 * Munk√°s fogad√°sa, munk√°s mez√µre l√©p/mozog.
-	 * @param w - a munk√°s
-	 * @param d - ir√°nyb√≥l √©rkezik
+	 * Munk·s fogad·sa, munk·s mezıre lÈp/mozog.
+	 * @param w - a munk·s
+	 * @param d - ir·nybÛl Èrkezik
 	 */
 	void AcceptWorker(Worker w, Direction d)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptWorker called");
+		System.out.println(toString() + " - AcceptWorker called");
 		switch(containstate)
 		{
 		case BOX:
-			int str=w.getStrength();
+			int str = w.getStrength();
 			int fr = liquidstate.friction();
-			boolean r = str>=fr;
+			boolean r = str >= fr;
 			if(r)
 			{
 				if(neighbors[d.getDir()].AcceptBox(box, d, str))
 				{
-					w.UpdateWorker(this); AddWorker(w);
+					w.UpdateWorker(this);
+					AddWorker(w);
 				}
 			}				
 			break;
 
 		default:
 
-			w.UpdateWorker(this); AddWorker(w);
+			w.UpdateWorker(this);
+			AddWorker(w);
 			break;
 		}
 	}
 
-	//Doboz hozz√°ad√°sa, update
+	//Doboz hozz·ad·sa, update
 	void AddBox(Box b)
 	{
-		this.box=b;
-		containstate=FieldStatus.BOX;
+		this.box = b;
+		containstate = FieldStatus.BOX;
 	}
 
 	/**
-	 * Doboz fogad√°sa, doboz erre a mez√µre ker√ºl.
+	 * Doboz fogad·sa, doboz erre a mezıre ker¸l.
 	 * @param b - A doboz
-	 * @param d - Ebb√µl az ir√°nyb√≥l
-	 * @return - sikeres volt-e a doboz fogad√°sa
+	 * @param d - Ebbıl az ir·nybÛl
+	 * @return - sikeres volt-e a doboz fogad·sa
 	 */
 	boolean AcceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptBox called");
+		System.out.println(toString() + " - AcceptBox called");
 		switch(containstate)
 		{
 		case BOX:
 			int fr = liquidstate.friction();
-			boolean r = str>=fr;
+			boolean r = str >= fr;
 			if(r)
 			{
-				r = neighbors[d.getDir()].AcceptBox(box, d, str-fr);
+				r = neighbors[d.getDir()].AcceptBox(box, d, str - fr);
 				if(r)
 				{
-					b.UpdateBox(this); AddBox(b);
+					b.UpdateBox(this);
+					AddBox(b);
 				}
 			}
 			return r;
@@ -116,26 +119,28 @@ public class Field
 		case WORKERS:
 
 			neighbors[d.getDir()].AcceptUnwillingWorkers(workers, d);
-			b.UpdateBox(this); AddBox(b);
+			b.UpdateBox(this);
+			AddBox(b);
 			return true;
 
 		default:
 
-			b.UpdateBox(this); AddBox(b);
+			b.UpdateBox(this);
+			AddBox(b);
 			return true;
 		}
 	}
 
 	/**
-	 * Munk√°s(oka)t r√° tolnak a mez√µre
-	 * @param l - Munk√°s/Munk√°sok list√°ja akik r√°ker√ºlnek
-	 * @param d - Ebb√µl az ir√°nyb√≥l
-	 * @return - Sikeres volt-e a mozgat√°s
+	 * Munk·s(oka)t r· tolnak a mezıre
+	 * @param l - Munk·s/Munk·sok list·ja akik r·ker¸lnek
+	 * @param d - Ebbıl az ir·nybÛl
+	 * @return - Sikeres volt-e a mozgat·s
 	 */
 	void AcceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptUnwillingWorkers called");
+		System.out.println(toString() + " - AcceptUnwillingWorkers called");
 		switch(containstate)
 		{
 		case BOX:
@@ -153,57 +158,57 @@ public class Field
 	}
 
 	/**
-	 * Doboz leszed√©se a mez√µr√µl.
+	 * Doboz leszedÈse a mezırıl.
 	 * @param b - A doboz
 	 */
 	void removeBox(Box b)
 	{
 		//PRINT
-		System.out.println(toString()+" - removeBox called");
-		containstate=FieldStatus.CLEAR;
+		System.out.println(toString() + " - removeBox called");
+		containstate = FieldStatus.CLEAR;
 	}
 
 	/**
-	 * Munk√°s leszed√©se a mez√µr√µl.
-	 * @param w - A munk√°s
+	 * Munk·s leszedÈse a mezırıl.
+	 * @param w - A munk·s
 	 */
 	void removeWorker(Worker w)
 	{
 		//PRINT
-		System.out.println(toString()+" - removeWorker called");
+		System.out.println(toString() + " - removeWorker called");
 		workers.remove(w);
 		if(workers.isEmpty())
-			containstate=FieldStatus.CLEAR;
+			containstate = FieldStatus.CLEAR;
 	}
 
 	/**
-	 * M√©z √∂nt√©se a mez√µre
+	 * MÈz ˆntÈse a mezıre
 	 */
 	void pourHoney()
 	{
-		System.out.println(toString()+" - pourHoney called");
-		liquidstate=Liquid.HONEY;
+		System.out.println(toString() + " - pourHoney called");
+		liquidstate = Liquid.HONEY;
 	}
 
 	/**
-	 * Olaj √∂nt√©se a mez√µre
+	 * Olaj ˆntÈse a mezıre
 	 */
 	void pourOil()
 	{
-		System.out.println(toString()+" - pourOil called");
-		liquidstate=Liquid.OIL;
+		System.out.println(toString() + " - pourOil called");
+		liquidstate = Liquid.OIL;
 	}
 	/**
-         * Visszaadja a mez√µt reprezent√°l√≥ karaktert, √°llapott√≥l f√ºgg√µen
+         * Visszaadja a mezıt reprezent·lÛ karaktert, ·llapottÛl f¸ggıen
          * @return - a karakter amit visszaad
          */
 	String getChar()
 	{
 		if (liquidstate == Liquid.OIL)
-                    return "_";
-                if (liquidstate == Liquid.HONEY)
-                    return ":";
-                else
-                    return ".";
-	}
+            return "_";
+		else if (liquidstate == Liquid.HONEY)
+            return ":";
+        else
+            return ".";
+}
 }

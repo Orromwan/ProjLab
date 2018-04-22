@@ -3,59 +3,59 @@ package projlab;
 import java.util.*;
 
 /**
- * A Wall mez√µ oszt√°lya
+ * A Wall mezı oszt·lya
  */
 public class Wall extends Field 
 {
 
 	/**
-	 * Doboz fogad√°sa, doboz erre a mez√µre ker√ºl.
+	 * Doboz fogad·sa, doboz erre a mezıre ker¸l.
 	 * @param b - A doboz
-	 * @param d - Ebb√µl az ir√°nyb√≥l
-	 * @return - sikeres volt-e a doboz fogad√°sa
+	 * @param d - Ebbıl az ir·nybÛl
+	 * @return - sikeres volt-e a doboz fogad·sa
 	 */
 	boolean AcceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptBox called");
+		System.out.println(toString() + " - AcceptBox called");
 		// Falra sose tolhatunk dobozt.
 		return false;
 	}
 
 	/**
-	 * Munk√°s fogad√°sa, munk√°s mez√µre l√©p/mozog.
-	 * @param w - a munk√°s
-	 * @param d - ir√°nyb√≥l √©rkezik
+	 * Munk·s fogad·sa, munk·s mezıre lÈp/mozog.
+	 * @param w - a munk·s
+	 * @param d - ir·nybÛl Èrkezik
 	 */
 	void AcceptWorker(Worker w, Direction d)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptWorker called");
-		// Munk√°ssal nem l√©phet√ºnk falra.
+		System.out.println(toString() + " - AcceptWorker called");
+		// Munk·ssal nem lÈphet¸nk falra.
 	}
 
 	/**
-	 * Munk√°s(oka)t r√° tolnak a mez√µre
-	 * @param l - Munk√°s/Munk√°sok list√°ja akik r√°ker√ºlnek
-	 * @param d - Ebb√µl az ir√°nyb√≥l
-	 * @return - Sikeres volt-e a mozgat√°s
+	 * Munk·s(oka)t r· tolnak a mezıre
+	 * @param l - Munk·s/Munk·sok list·ja akik r·ker¸lnek
+	 * @param d - Ebbıl az ir·nybÛl
+	 * @return - Sikeres volt-e a mozgat·s
 	 */
 	void AcceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptUnwillingWorkers called");
+		System.out.println(toString() + " - AcceptUnwillingWorkers called");
 		for(Worker w : l)
 		{
 			w.kill();
 		}
 	}
 	/**
-         * Visszadja az √µt reprezent√°l√≥ karaktert
-         * @return a visszat√©r√©si karakter
-         */
-        @Override
-        String getChar()
-        {
-            return "X";
-        }
+     * Visszadja az ıt reprezent·lÛ karaktert
+     * @return a visszatÈrÈsi karakter
+     */
+    @Override
+    String getChar()
+    {
+        return "X";
+    }
 }

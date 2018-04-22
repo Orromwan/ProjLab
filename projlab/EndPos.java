@@ -1,34 +1,35 @@
 package projlab;
 
 /**
- * V√©g pozici√≥ oszt√°ly, erre a mez√µre dobozt tolva a munk√°s
+ * VÈg poziciÛ oszt·ly, erre a mezıre dobozt tolva a munk·s
  * pontot kap.
  */
 public class EndPos extends Field 
 {
 	
 	/**
-	 * Doboz fogad√°sa, doboz erre a mez√µre ker√ºl.
+	 * Doboz fogad·sa, doboz erre a mezıre ker¸l.
 	 * @param b - A doboz
-	 * @param d - Ebb√µl az ir√°nyb√≥l
-	 * @return - sikeres volt-e a doboz fogad√°sa
+	 * @param d - Ebbıl az ir·nybÛl
+	 * @return - sikeres volt-e a doboz fogad·sa
 	 */
 	boolean AcceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptBox called");
+		System.out.println(toString() + " - AcceptBox called");
 		switch(containstate)
 		{
 		case BOX:
 			
 			int fr = liquidstate.friction();
-			boolean r = str>=fr;
+			boolean r = str >= fr;
 			if(r)
 			{
-				r = neighbors[d.getDir()].AcceptBox(box, d, str-fr);
+				r = neighbors[d.getDir()].AcceptBox(box, d, str - fr);
 				if(r)
 				{
-					b.UpdateBox(this); AddBox(b);
+					b.UpdateBox(this);
+					AddBox(b);
 					Game.addPointsToLastWorker(1);
 				}
 			}
@@ -37,13 +38,15 @@ public class EndPos extends Field
 		case WORKERS:
 			
 			AcceptUnwillingWorkers(workers, d);
-			b.UpdateBox(this); AddBox(b);
+			b.UpdateBox(this);
+			AddBox(b);
 			Game.addPointsToLastWorker(1);
 			return true;
 
 		default:
 			
-			b.UpdateBox(this); AddBox(b);
+			b.UpdateBox(this);
+			AddBox(b);
 			Game.addPointsToLastWorker(1);
 			return true;
 		}
@@ -51,7 +54,7 @@ public class EndPos extends Field
 
 	}
 	/**
-         * Visszaadja az EndPost reprezent√°l√≥ karaktert
+         * Visszaadja az EndPost reprezent·lÛ karaktert
          * @return - a karakter
          */
         @Override

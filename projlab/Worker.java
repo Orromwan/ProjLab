@@ -1,78 +1,78 @@
 package projlab;
 
 /**
- * A munk√°s oszt√°ly, t√°rolja a munk√°s pontjait
- * √©s azt, hogy mely mez√µn √°ll.
+ * A munk·s oszt·ly, t·rolja a munk·s pontjait
+ * Ès azt, hogy mely mezın ·ll.
  */
 public class Worker 
 {
-	// A munk√°s pontjai.
-	private int points=0;
+	// A munk·s pontjai.
+	private int points = 0;
 	
-	// A munk√°s ezen a mez√µn √°ll.
+	// A munk·s ezen a mezın ·ll.
 	private Field pos;
 	
-	// A munk√°s ereje
+	// A munk·s ereje
 	private int strength;
 	
-	//Konstruktor, amely a mez√µre helyezi a munk√°st
+	//Konstruktor, amely a mezıre helyezi a munk·st
 	void InitWorker(Field f, int str)
 	{
 		f.AddWorker(this);
-		pos=f;
-		strength=str;
+		pos = f;
+		strength = str;
 	}
 
 	/**
-	 * Munk√°s mozgat√°sa a param√©ter√ºl kapott ir√°nyba
-	 * @param dir - Az ir√°ny
+	 * Munk·s mozgat·sa a paramÈter¸l kapott ir·nyba
+	 * @param dir - Az ir·ny
 	 */
 	void MoveWorker(Direction dir)
 	{
 		//PRINT
-		System.out.println(toString()+" - MoveWorker called");
+		System.out.println(toString() + " - MoveWorker called");
 		Field f = pos.getNeighbor(dir);
 		
 		f.AcceptWorker(this, dir);	
 	}
 	
 	/**
-	 * Munk√°s √°tker√ºl a param√©ter√ºl kapott c√©l mez√µre.
-	 * @param f - A c√©l mez√µ
+	 * Munk·s ·tker¸l a paramÈter¸l kapott cÈl mezıre.
+	 * @param f - A cÈl mezı
 	 */
 	void UpdateWorker(Field f)
 	{
 		//PRINT
-		System.out.println(toString()+" - UpdateWorker called");
+		System.out.println(toString() + " - UpdateWorker called");
 		
 		pos.removeWorker(this);
-		pos=f;
+		pos = f;
 	}
 	
 	/**
-	 * Munk√°s pontjainak n√∂vel√©se a param√©ter√ºl kapott √©rt√©kkel.
-	 * @param i - Az √©rt√©k
+	 * Munk·s pontjainak nˆvelÈse a paramÈter¸l kapott ÈrtÈkkel.
+	 * @param i - Az ÈrtÈk
 	 */
 	void IncPoints(int i)
 	{
 		//PRINT
-		System.out.println(toString()+" - IncPoints called");
-		points+=i;
+		System.out.println(toString() + " - IncPoints called");
+		points += i;
 	}
 	
 	/**
-	 * Munk√°s meg√∂l√©se, leker√ºl az aktu√°lis mez√µr√µl.
+	 * Munk·s megˆlÈse, leker¸l az aktu·lis mezırıl.
 	 */
 	void kill()
 	{
 		//PRINT
-		System.out.println(toString()+" - kill called");
+		System.out.println(toString() + " - kill called");
 		pos.removeWorker(this);
-		pos=null;
+		pos = null;
 	}
 	
 	/**
-	 * Visszaadja a munk√°s erej√©t
+	 * Visszaadja a munk·s erejÈt
 	 */
 	int getStrength()
 	{
@@ -80,7 +80,7 @@ public class Worker
 	}
 	
 	/**
-	 * M√©zet √∂nt az aktu√°lis mez√µre
+	 * MÈzet ˆnt az aktu·lis mezıre
 	 */
 	void pourHoney()
 	{
@@ -88,18 +88,18 @@ public class Worker
 	}
 	
 	/**
-	 * Olajat √∂nt az aktu√°lis mez√µre
+	 * Olajat ˆnt az aktu·lis mezıre
 	 */
 	void pourOil()
 	{
 		pos.pourOil();
 	}
 	/**
-         * Visszaadja a Workert reprezent√°l√≥ karaktert 
-         * @return - a karakter
-         */
-        String getChar()
-        {
-            return "W";
-        }
+     * Visszaadja a Workert reprezent·lÛ karaktert 
+     * @return - a karakter
+     */
+    String getChar()
+    {
+        return "W";
+    }
 }

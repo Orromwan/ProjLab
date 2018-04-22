@@ -1,5 +1,5 @@
 package projlab;
 
 public enum FieldStatus {
-CLEAR, WORKERS, BOX;
+	CLEAR, WORKERS, BOX;
 }

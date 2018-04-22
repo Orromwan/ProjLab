@@ -1,44 +1,44 @@
 package projlab;
 
 /**
- * A Hybrid mez√µ oszt√°lya, t√°rolja a mez√µ √°llapot√°t.
+ * A Hybrid mezı oszt·lya, t·rolja a mezı ·llapot·t.
  */
 public class Hybrid extends Field 
 {
-	// A hibrid √°llapot√°t t√°rol√≥ v√°ltoz√≥
-	private boolean status=false;
+	// A hibrid ·llapot·t t·rolÛ v·ltozÛ
+	private boolean status = false;
 
 
 	/**
-	 * A hibird aktiv√°l√°sa, lyuk lesz.
+	 * A hibird aktiv·l·sa, lyuk lesz.
 	 */
 	void switchOn()
 	{
 		//PRINT
-		System.out.println(toString()+" - switchOn called");
-		status=true;
+		System.out.println(toString() + " - switchOn called");
+		status = true;
 	}	
 
 	/**
-	 *  A hibrid bez√°r√°sa, egyszer√ª mez√µ lesz.
+	 *  A hibrid bez·r·sa, egyszer˚ mezı lesz.
 	 */
 	void close()
 	{
 		//PRINT
-		System.out.println(toString()+" - close called");
-		status=false;
+		System.out.println(toString() + " - close called");
+		status = false;
 	}
 
 	/**
-	 * Doboz fogad√°sa, doboz erre a mez√µre ker√ºl.
+	 * Doboz fogad·sa, doboz erre a mezıre ker¸l.
 	 * @param b - A doboz
-	 * @param d - Ebb√µl az ir√°nyb√≥l
-	 * @return - sikeres volt-e a doboz fogad√°sa
+	 * @param d - Ebbıl az ir·nybÛl
+	 * @return - sikeres volt-e a doboz fogad·sa
 	 */
 	boolean AcceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptBox called");
+		System.out.println(toString() + " - AcceptBox called");
 		if(status)
 		{
 			b.KillBox();
@@ -50,13 +50,14 @@ public class Hybrid extends Field
 			case BOX:
 				
 				int fr = liquidstate.friction();
-				boolean r = str>=fr;
+				boolean r = str >= fr;
 				if(r)
 				{
-					r = neighbors[d.getDir()].AcceptBox(box, d, str-fr);
+					r = neighbors[d.getDir()].AcceptBox(box, d, str - fr);
 					if(r)
 					{
-						b.UpdateBox(this); AddBox(b);
+						b.UpdateBox(this);
+						AddBox(b);
 					}
 				}
 				return r;
@@ -64,12 +65,14 @@ public class Hybrid extends Field
 			case WORKERS:
 
 				AcceptUnwillingWorkers(workers, d);
-				b.UpdateBox(this); AddBox(b);
+				b.UpdateBox(this);
+				AddBox(b);
 				return true;
 
 			default:
 
-				b.UpdateBox(this); AddBox(b);
+				b.UpdateBox(this);
+				AddBox(b);
 				return true;
 			}
 		}
@@ -77,14 +80,14 @@ public class Hybrid extends Field
 	}
 
 	/**
-	 * Munk√°s fogad√°sa, munk√°s mez√µre l√©p/mozog.
-	 * @param w - a munk√°s
-	 * @param d - ir√°nyb√≥l √©rkezik
+	 * Munk·s fogad·sa, munk·s mezıre lÈp/mozog.
+	 * @param w - a munk·s
+	 * @param d - ir·nybÛl Èrkezik
 	 */
 	void AcceptWorker(Worker w, Direction d)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptWorker called");
+		System.out.println(toString() + " - AcceptWorker called");
 		if(status)
 		{
 			w.kill();
@@ -95,28 +98,30 @@ public class Hybrid extends Field
 			{
 			case BOX:
 				
-				int str=w.getStrength();
+				int str = w.getStrength();
 				int fr = liquidstate.friction();
-				boolean r = str>=fr;
+				boolean r = str >= fr;
 				if(r)
 				{
 					if(neighbors[d.getDir()].AcceptBox(box, d, str))
 					{
-						w.UpdateWorker(this); AddWorker(w);
+						w.UpdateWorker(this);
+						AddWorker(w);
 					}
 				}
 				break;
 
 			default:
 
-				w.UpdateWorker(this); AddWorker(w);
+				w.UpdateWorker(this);
+				AddWorker(w);
 				break;
 			}
 		}
 	}
 	/**
-         * Visszadja az √µt reprezent√°l√≥ karaktert √°llapott√≥l f√ºgg√µen
-         * @return a visszat√©r√©si karakter
+         * Visszadja az ıt reprezent·lÛ karaktert ·llapottÛl f¸ggıen
+         * @return a visszatÈrÈsi karakter
          */
         @Override
         String getChar()

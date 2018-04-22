@@ -11,7 +11,7 @@ public enum Direction
 	
 	Direction(int i)
 	{
-		d=i;
+		d = i;
 	}
 	
 	int getDir()

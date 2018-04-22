@@ -13,7 +13,7 @@ public class Game
 	static private Worker worker;
 
 	//A játékosok listája
-	static private ArrayList<Worker> workers=new ArrayList<Worker>();
+	static private ArrayList<Worker> workers = new ArrayList<Worker>();
 
 	/**
 	 * A játék menete
@@ -21,7 +21,7 @@ public class Game
 	 */
 	static void run() throws InterruptedException
 	{
-		worker=workers.get(0);
+		worker = workers.get(0);
 		while(true)
 		{
 			if(HandleInput()) break;
@@ -69,20 +69,20 @@ public class Game
 	//Aktuális unkás beállítása
 	static void SetStartingWorker(Worker w)
 	{
-		worker=w;
+		worker = w;
 	}
 	
 	//Játékos váltása
 	private static void ChangePlayer()
 	{
 		int i = workers.indexOf(worker);
-		if(null!=workers.get(i+1))
+		if(workers.get(i + 1) != null)
 		{
-			worker=workers.get(i+1);
+			worker = workers.get(i + 1);
 		}
 		else
 		{
-			worker=workers.get(0);
+			worker = workers.get(0);
 		}
 	}
 	

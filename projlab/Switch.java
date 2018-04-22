@@ -1,42 +1,43 @@
 package projlab;
 
 /**
- * A Switch mez√µ oszt√°lya, figyeli a kapcsol√≥ √°llapot√°t
- * √©s annak f√ºggv√©ny√©ben m√ªk√∂dteti a hozz√° tartoz√≥ hibrid mez√µt.
+ * A Switch mezı oszt·lya, figyeli a kapcsolÛ ·llapot·t
+ * Ès annak f¸ggvÈnyÈben m˚kˆdteti a hozz· tartozÛ hibrid mezıt.
  */
 public class Switch extends Field 
 {
-	// A kapcsol√≥hoz tartoz√≥ hybrid mez√µ
+	// A kapcsolÛhoz tartozÛ hybrid mezı
 	private Hybrid hybrid;
 	
-	//A hybrid meu√µ be√°ll√≠t√°s√°hoz
+	//A hybrid meuı be·llÌt·s·hoz
 	void setHybrid(Hybrid h)
 	{
-		hybrid=h;
+		hybrid = h;
 	}
 	
 	/**
-	 * Doboz fogad√°sa, doboz erre a mez√µre ker√ºl.
+	 * Doboz fogad·sa, doboz erre a mezıre ker¸l.
 	 * @param b - A doboz
-	 * @param d - Ebb√µl az ir√°nyb√≥l
-	 * @return - sikeres volt-e a doboz fogad√°sa
+	 * @param d - Ebbıl az ir·nybÛl
+	 * @return - sikeres volt-e a doboz fogad·sa
 	 */
 	boolean AcceptBox(Box b, Direction d, int str)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptBox called");
+		System.out.println(toString() + " - AcceptBox called");
 		switch(containstate)
 		{
 		case BOX:
 
 			int fr = liquidstate.friction();
-			boolean r = str>=fr;
+			boolean r = str >= fr;
 			if(r)
 			{
-				r = neighbors[d.getDir()].AcceptBox(box, d, str-fr);
+				r = neighbors[d.getDir()].AcceptBox(box, d, str - fr);
 				if(r)
 				{
-					b.UpdateBox(this); AddBox(b);
+					b.UpdateBox(this);
+					AddBox(b);
 					hybrid.switchOn();
 				}
 			}
@@ -45,39 +46,42 @@ public class Switch extends Field
 		case WORKERS:
 						
 			AcceptUnwillingWorkers(workers, d);
-			b.UpdateBox(this); AddBox(b);
+			b.UpdateBox(this);
+			AddBox(b);
 			hybrid.switchOn();
 			return true;
 
 		default:
 			
-			b.UpdateBox(this); AddBox(b);
+			b.UpdateBox(this);
+			AddBox(b);
 			hybrid.switchOn();
 			return true;
 		}
 	}
 	
 	/**
-	 * Munk√°s fogad√°sa, munk√°s mez√µre l√©p/mozog.
-	 * @param w - a munk√°s
-	 * @param d - ir√°nyb√≥l √©rkezik
+	 * Munk·s fogad·sa, munk·s mezıre lÈp/mozog.
+	 * @param w - a munk·s
+	 * @param d - ir·nybÛl Èrkezik
 	 */
 	void AcceptWorker(Worker w, Direction d)
 	{
 		//PRINT
-		System.out.println(toString()+" - AcceptWorker called");
+		System.out.println(toString() + " - AcceptWorker called");
 		switch(containstate)
 		{
 		case BOX:
 			
-			int str=w.getStrength();
+			int str = w.getStrength();
 			int fr = liquidstate.friction();
-			boolean r = str>=fr;
+			boolean r = str >= fr;
 			if(r)
 			{
 				if(neighbors[d.getDir()].AcceptBox(box, d, str))
 				{
-					w.UpdateWorker(this); AddWorker(w);
+					w.UpdateWorker(this);
+					AddWorker(w);
 					hybrid.close();
 				}
 			}
@@ -85,17 +89,18 @@ public class Switch extends Field
 
 		default:
 			
-			w.UpdateWorker(this); AddWorker(w);
+			w.UpdateWorker(this);
+			AddWorker(w);
 			break;
 		}
 	}
 	/**
-         * Visszaadja a switchet reprezent√°l√≥ karaktert 
-         * @return - a karakter
-         */
-        @Override
-        String getChar()
-        {
-            return "L";
-        }
+     * Visszaadja a switchet reprezent·lÛ karaktert 
+     * @return - a karakter
+     */
+    @Override
+    String getChar()
+    {
+        return "L";
+    }
 }

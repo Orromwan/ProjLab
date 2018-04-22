@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		System.out.println("V√°lassz teszt szekvenci√°t 1-13ig a sz√°m megad√°s√°val:");
+		System.out.println("V·lassz teszt szekvenci·t 1-10ig a sz·m megad·s·val:");
 
 		/*
 		String inputStr = System.console().readLine();
@@ -16,6 +16,8 @@ public class Main {
 		Scanner scin = new Scanner(System.in);
 		int input = scin.nextInt();
 		scin.close();
+
+
 
 
 		switch(input) {
@@ -32,7 +34,7 @@ public class Main {
 		case 11: seq11();break;
 		case 12: seq12();break;
 		case 13: seq13();break;*/
-		default: System.out.println("Rossz √©rt√©k!");
+		default: System.out.println("Rossz ÈrtÈk!");
 		}
 
 		Hybrid h=new Hybrid();
@@ -64,9 +66,9 @@ public class Main {
 		Game.run();
 
 		}
-	
-
-/*	//1. Munk√°s √ºres mez√µre l√©p
+}
+/*
+	//1. Munk·s ¸res mezıre lÈp
 	public static void seq01()
 	{			
 		Field f1 = new Field();
@@ -77,13 +79,13 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//2. Dobozt tol √úres mez√µre
+	//2. Dobozt tol ‹res mezıre
 	public static void seq02()
 	{
 		Field f1 = new Field();
 		Field f2 = new Field();
 		Field f3 = new Field();
-		Box b1 = new Box(f2);		
+		Box b1 = new Box(f2);
 		Worker w1 = new Worker(f1, 6);
 		f1.addNeighbor(f2, Direction.RIGHT);
 		f2.addNeighbor(f1, Direction.LEFT);
@@ -98,7 +100,7 @@ public class Main {
 		Field f1 = new Field();
 		Field f2 = new Field();
 		Wall wa1 = new Wall();
-		Box b1 = new Box(f2);		
+		Box b1 = new Box(f2);
 		Worker w1 = new Worker(f1, 6);
 		f1.addNeighbor(f2, Direction.RIGHT);
 		f2.addNeighbor(f1, Direction.LEFT);
@@ -114,7 +116,7 @@ public class Main {
 		Field f2 = new Field();
 		Hybrid h1 = new Hybrid();
 		h1.switchOn();
-		Box b1 = new Box(f2);		
+		Box b1 = new Box(f2);
 		Worker w1 = new Worker(f1, 6);
 		f1.addNeighbor(f2, Direction.RIGHT);
 		f2.addNeighbor(f1, Direction.LEFT);
@@ -123,7 +125,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//5. Kapcsol√≥ra tol
+	//5. KapcsolÛra tol
 	public static void seq05()
 	{
 		Field f1 = new Field();
@@ -131,7 +133,7 @@ public class Main {
 		Hybrid h1 = new Hybrid();
 		Switch s1 = new Switch();
 		s1.setHybrid(h1);
-		Box b1 = new Box(f2);		
+		Box b1 = new Box(f2);
 		Worker w1 = new Worker(f1, 6);
 		f1.addNeighbor(f2, Direction.RIGHT);
 		f2.addNeighbor(f1, Direction.LEFT);
@@ -142,7 +144,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//6. Letolja a kapcsol√≥r√≥l
+	//6. Letolja a kapcsolÛrÛl
 	public static void seq06()
 	{
 		Field f1 = new Field();
@@ -161,13 +163,13 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//7. Elfogad√≥helyre tol
+	//7. ElfogadÛhelyre tol
 	public static void seq07()
 	{
 		Field f1 = new Field();
 		Field f2 = new Field();
 		EndPos e1 = new EndPos();
-		Box b1 = new Box(f2);		
+		Box b1 = new Box(f2);
 		Worker w1 = new Worker(f1, 6);
 		Game.SetStartingWorker(w1);
 		f1.addNeighbor(f2, Direction.RIGHT);
@@ -177,14 +179,14 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//8. T√∂bb dobozt tol
+	//8. Tˆbb dobozt tol
 	public static void seq08()
 	{
 		Field f1 = new Field();
 		Field f2 = new Field();
 		Field f3 = new Field();
 		Field f4 = new Field();
-		Box b1 = new Box(f2);		
+		Box b1 = new Box(f2);
 		Box b2 = new Box(f3);
 		Worker w1 = new Worker(f1, 6);
 		f1.addNeighbor(f2, Direction.RIGHT);
@@ -196,14 +198,14 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//9. Falnak tol t√∂bb dobozt
+	//9. Falnak tol tˆbb dobozt
 	public static void seq09()
 	{
 		Field f1 = new Field();
 		Field f2 = new Field();
 		Field f3 = new Field();
 		Wall wa1 = new Wall();
-		Box b1 = new Box(f2);		
+		Box b1 = new Box(f2);
 		Box b2 = new Box(f3);
 		Worker w1 = new Worker(f1, 6);
 		f1.addNeighbor(f2, Direction.RIGHT);
@@ -215,14 +217,14 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//10. √ñsszenyom
+	//10. ÷sszenyom
 	public static void seq10() 
 	{
 		Field f1 = new Field();
 		Field f2 = new Field();
 		Field f3 = new Field();
 		Wall wa1 = new Wall();
-		Box b1 = new Box(f2);		
+		Box b1 = new Box(f2);
 		Worker w1 = new Worker(f1, 6);
 		Worker w2 = new Worker(f3, 6);
 		Worker w3 = new Worker(f3, 6);
@@ -235,7 +237,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}	
 
-	//11. EnPosra l√©p
+	//11. EnPosra lÈp
 	public static void seq11()
 	{
 		Field f1 = new Field();
@@ -246,7 +248,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//12. Lyukra l√©p
+	//12. Lyukra lÈp
 	public static void seq12()
 	{
 		Field f1 = new Field();
@@ -267,5 +269,6 @@ public class Main {
 		f1.addNeighbor(wa1, Direction.RIGHT);
 		wa1.addNeighbor(f1, Direction.LEFT);
 		w1.MoveWorker(Direction.RIGHT);
-	}*/
+	}
 }
+*/
