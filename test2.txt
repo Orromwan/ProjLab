@@ -1,0 +1,8 @@
+X	X	X	X	X	X	X	X
+X	W	B	!	.	.	.	X
+X	.	.	.	.	B	!	X
+X	o	L	X	.	.	.	X
+X	.	.	.	.	X	.	X
+X	.	.	o	L	.	.	X
+X	.	.	.	B	.	!	X
+X	X	X	X	X	X	X	X
