@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class Map 
 {
-	//A map dimenziói
+	// A map dimenziói
 	static int x = 5;
 	static int y = 5;
 	// A mezõk
@@ -19,6 +19,10 @@ public class Map
 	static private Worker[][] Workers = new Worker[y][x];
 	static private Box[][] Boxes = new Box[y][x];
 	static private String[][] Map = new String[y][x];
+	// A helyükre tolt dobozok száma
+	static private int BoxesAtFinish;
+	// A dobozok száma
+	static private int BoxCount;
 
 	/**
 	 * A pálya inicializálása a pályán lévõ elemek mátrixaival
@@ -103,6 +107,7 @@ public class Map
                 	Workers = new Worker[rowCount][rowCount];
                 	Boxes = new Box[rowCount][rowCount];
                 	Map = new String[rowCount][rowCount];
+                	x = y = rowCount;
                 }
                 // A beolvasott pálya
                 System.out.println(line);
@@ -117,6 +122,7 @@ public class Map
                 	case "B":
                 		Fields[i][columnIndex] = new Field();
                 		Boxes[i][columnIndex] = new Box();
+                		BoxCount++;
                 		break;
                 	case "W":
                 		Fields[i][columnIndex] = new Field();
@@ -163,9 +169,15 @@ public class Map
             ex.printStackTrace();
         }
 	}
-	
-	public static void update(int oldX, int oldY, String oldField, int newX, int newY, String newField)
+	public static void boxIsFinished()
 	{
-		
+		BoxesAtFinish++;
+	}
+	public static boolean isGameOver()
+	{
+		if(BoxesAtFinish == BoxCount)
+			return true;
+		else
+			return false;
 	}
 }

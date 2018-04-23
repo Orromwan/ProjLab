@@ -38,8 +38,10 @@ public class Game
 			if(Workers.isEmpty())
 				break;
 			
+			if(map.isGameOver())
+				break;
+			
 			changePlayer();
-			Map.draw();
 		}
 	}
 
@@ -110,9 +112,10 @@ public class Game
 		//PRINT
 		System.out.println("Game - addPointsToLastWorker called");
 		Worker.incPoints(p);
+		Map.boxIsFinished();
 	}
 
-	//Aktuális unkás beállítása
+	//Aktuális munkás beállítása
 	static void setStartingWorker(Worker w)
 	{
 		Worker = w;
