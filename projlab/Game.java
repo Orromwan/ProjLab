@@ -84,6 +84,9 @@ public class Game
 		case "d":
 			Worker.moveWorker(Direction.RIGHT);
 			break;
+		case "wpoints":
+            System.out.println("Worker points: "+ Worker.getPoints());
+			break;
 		case "e":
 			return true;
 		}
