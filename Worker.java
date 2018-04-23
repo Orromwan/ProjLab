@@ -1,21 +1,21 @@
 package projlab;
 
 /**
- * A munkï¿½s osztï¿½ly, tï¿½rolja a munkï¿½s pontjait
- * ï¿½s azt, hogy mely mezï¿½n ï¿½ll.
+ * A munk?s oszt?ly, t?rolja a munk?s pontjait
+ * ?s azt, hogy mely mez?n ?ll.
  */
 public class Worker 
 {
-	// A munkï¿½s pontjai.
+	// A munk?s pontjai.
 	private int Points = 0;
 	
-	// A munkï¿½s ezen a mezï¿½n ï¿½ll.
+	// A munk?s ezen a mez?n ?ll.
 	private Field Position;
 	
-	// A munkï¿½s ereje
+	// A munk?s ereje
 	private int Strength;
 	
-	//Konstruktor, amely a mezï¿½re helyezi a munkï¿½st
+	//Konstruktor, amely a mez?re helyezi a munk?st
 	void initWorker(Field f, int str)
 	{
 		f.addWorker(this);
@@ -24,8 +24,8 @@ public class Worker
 	}
 
 	/**
-	 * Munkï¿½s mozgatï¿½sa a paramï¿½terï¿½l kapott irï¿½nyba
-	 * @param dir - Az irï¿½ny
+	 * Munk?s mozgat?sa a param?ter?l kapott ir?nyba
+	 * @param dir - Az ir?ny
 	 */
 	boolean moveWorker(Direction dir)
 	{
@@ -37,8 +37,8 @@ public class Worker
 	}
 	
 	/**
-	 * Munkï¿½s ï¿½tkerï¿½l a paramï¿½terï¿½l kapott cï¿½l mezï¿½re.
-	 * @param f - A cï¿½l mezï¿½
+	 * Munk?s ?tker?l a param?ter?l kapott c?l mez?re.
+	 * @param f - A c?l mez?
 	 */
 	void updateWorker(Field f)
 	{
@@ -50,8 +50,8 @@ public class Worker
 	}
 	
 	/**
-	 * Munkï¿½s pontjainak nï¿½velï¿½se a paramï¿½terï¿½l kapott ï¿½rtï¿½kkel.
-	 * @param i - Az ï¿½rtï¿½k
+	 * Munk?s pontjainak n?vel?se a param?ter?l kapott ?rt?kkel.
+	 * @param i - Az ?rt?k
 	 */
 	void incPoints(int i)
 	{
@@ -61,7 +61,7 @@ public class Worker
 	}
 	
 	/**
-	 * Munkï¿½s megï¿½lï¿½se, lekerï¿½l az aktuï¿½lis mezï¿½rï¿½l.
+	 * Munk?s meg?l?se, leker?l az aktu?lis mez?r?l.
 	 */
 	void kill()
 	{
@@ -73,15 +73,33 @@ public class Worker
 	}
 	
 	/**
-	 * Visszaadja a munkï¿½s erejï¿½t
+	 * Visszaadja a munk?s erej?t
 	 */
 	int getStrength()
 	{
 		return Strength;
 	}
+	/**
+         * Visszaadja a pontok mezõ értékét
+         * @return - pontok
+         */
+        int getPoints()
+        {
+            return Points;
+        }
+        
+        /**
+         * Beállítja a strength mezõ értékét
+         * @param str - az átvett érték
+         */
+        void setStrength(int str)
+        {
+            System.out.println("Worker's strength changed from " + Strength + " to " + str);
+            this.Strength = str;
+        }
 	
 	/**
-	 * Mï¿½zet ï¿½nt az aktuï¿½lis mezï¿½re
+	 * M?zet ?nt az aktu?lis mez?re
 	 */
 	void pourHoney()
 	{
@@ -89,14 +107,14 @@ public class Worker
 	}
 	
 	/**
-	 * Olajat ï¿½nt az aktuï¿½lis mezï¿½re
+	 * Olajat ?nt az aktu?lis mez?re
 	 */
 	void pourOil()
 	{
 		Position.pourOil();
 	}
 	/**
-     * Visszaadja a Workert reprezentï¿½lï¿½ karaktert 
+     * Visszaadja a Workert reprezent?l? karaktert 
      * @return - a karakter
      */
  /*   String getChar()

@@ -80,9 +80,16 @@ public class Game
 			Worker.moveWorker(Direction.DOWN); break;
 		case "d":
 			Worker.moveWorker(Direction.RIGHT); break;
+                case "wpoints":
+                        System.out.println("Points :"+Worker.getPoints()); break;
 		case "e":
 			return true;
 		}
+                if (s.startsWith("changestr")){
+                    String[] splitted = s.split(" ");
+                    int requiredStr = Integer.parseInt(splitted[1]);
+                    Worker.setStrength(requiredStr);
+                }
 		Map.draw();
 		return false;
 	}
