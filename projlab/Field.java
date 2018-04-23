@@ -200,12 +200,27 @@ public class Field
          */
 	String getChar()
 	{
-		if (Liquidstate == Liquid.OIL)
-            return "_";
-		else if (Liquidstate == Liquid.HONEY)
-            return ":";
-        else
-            return ".";
+		switch(Containstate)
+		{
+		case BOX:
+			return "B";
+		case WORKERS:
+			return "W";
+		case CLEAR:
+			switch(Liquidstate)
+			{
+			case OIL:
+				return "_";
+			case HONEY:
+				return ":";
+			case NONE:
+				return ".";
+			default:
+				return "";
+			}
+		default:
+			return "";
+		}
 	}
 	public void setXPos(int x)
 	{

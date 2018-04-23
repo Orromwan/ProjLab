@@ -100,8 +100,28 @@ public class Switch extends Field
      * @return - a karakter
      */
     @Override
-    String getChar()
-    {
-        return "L";
-    }
+	String getChar()
+	{
+		switch(Containstate)
+		{
+		case BOX:
+			return "B";
+		case WORKERS:
+			return "W";
+		case CLEAR:
+			switch(Liquidstate)
+			{
+			case OIL:
+				return "_L";
+			case HONEY:
+				return ":L";
+			case NONE:
+				return "L";
+			default:
+				return "";
+			}
+		default:
+			return "";
+		}
+	}
 }

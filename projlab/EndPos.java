@@ -54,15 +54,32 @@ public class EndPos extends Field
 
 	}
 	/**
-         * Visszaadja az EndPost reprezentáló karaktert
-         * @return - a karakter
-         */
-        @Override
-        String getChar()
-        {
-        	if(Containstate == FieldStatus.BOX && Box != null)
-        		return "!";
-        	else
-        		return "?";
-        }
+	 * Visszaadja az EndPost reprezentáló karaktert
+	 * @return - a karakter
+	 */
+	@Override
+	String getChar()
+	{
+		switch(Containstate)
+		{
+		case BOX:
+			return "!B";
+		case WORKERS:
+			return "!W";
+		case CLEAR:
+			switch(Liquidstate)
+			{
+			case OIL:
+				return "_!";
+			case HONEY:
+				return ":!";
+			case NONE:
+				return "!";
+			default:
+				return "";
+			}
+		default:
+			return "";
+		}
+	}
 }

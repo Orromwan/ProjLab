@@ -9,16 +9,14 @@ public class Main {
 		System.out.println("Válassz teszt szekvenciát 1-10ig a szám megadásával:");
 
 		/*String inputStr = System.console().readLine();
-		int input = Integer.parseInt(inputStr);*/
+		int input = Integer.parseInt(inputStr);
 
 		Scanner scin = new Scanner(System.in);
 		int input = scin.nextInt();
 		scin.close();
 
-		Map map = new Map();
-
 		switch(input) {
-		/*case 1: seq01();break;
+		case 1: seq01();break;
 			case 2: seq02();break;
 			case 3: seq03();break;
 			case 4: seq04();break;
@@ -30,9 +28,11 @@ public class Main {
 			case 10: seq10();break;
 			case 11: seq11();break;
 			case 12: seq12();break;
-			case 13: seq13();break;*/
+			case 13: seq13();break;
 			default: System.out.println("Rossz érték!");
-		}
+		}*/
+		
+		Map map = new Map();
 		
 		map.initMapFromFile("test.txt");
 
@@ -64,9 +64,7 @@ public class Main {
 		map.create();
 		
 		Game.run(map);
-
-		
-		}
+	}
 }
 /*
 	//1. Munkás üres mezõre lép

@@ -41,12 +41,11 @@ public class Box {
 		CurrentField = null;
 	}
 	/**
-         * Visszaadja a Boxot reprezentáló karaktert 
-         * @return - a karakter
-         */
-        String getChar()
-        {
-            return "B";
-        }
-	
+	 * Visszaadja a Boxot reprezentáló karaktert 
+	 * @return - a karakter
+	 */
+	/*String getChar()
+	{
+		return "B";
+	}*/
 }

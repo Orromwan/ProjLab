@@ -69,6 +69,15 @@ public class Worker
 		System.out.println(toString() + " - kill called");
 		Position.removeWorker(this);
 		Position = null;
+		Game.killWorker(this);
+	}
+	/**
+	 * Visszaadja a pontok mezõ értékét
+	 * @return - pontok
+	 */
+	int getPoints()
+	{
+		return Points;
 	}
 	
 	/**
@@ -77,6 +86,14 @@ public class Worker
 	int getStrength()
 	{
 		return Strength;
+	}
+	
+	/**
+	 * Beállítja a munkás erejét
+	 */
+	void setStrength(int str)
+	{
+		Strength = str;
 	}
 	
 	/**
@@ -98,10 +115,10 @@ public class Worker
      * Visszaadja a Workert reprezentáló karaktert 
      * @return - a karakter
      */
-    String getChar()
+    /*String getChar()
     {
         return "W";
-    }
+    }*/
     
     public Field getPosition()
     {

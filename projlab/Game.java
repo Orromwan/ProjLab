@@ -17,6 +17,8 @@ public class Game
 
 	//A játékosok listája
 	static private ArrayList<Worker> Workers = new ArrayList<Worker>();
+	
+	static Scanner scin = new Scanner(System.in);
 
 	/**
 	 * A játék menete
@@ -28,8 +30,14 @@ public class Game
 		Worker = Workers.get(0);
 		while(true)
 		{
-			if(handleInput()) break;
-			Thread.sleep(2000);
+			if(handleInput())
+			{
+				scin.close();
+				break;
+			}
+			if(Workers.isEmpty())
+				break;
+			
 			changePlayer();
 			Map.draw();
 		}
@@ -41,19 +49,20 @@ public class Game
 	 */
 	private static boolean handleInput()
 	{
-		/*Scanner scin = new Scanner(System.in);
+		Scanner scin = new Scanner(System.in);
 		String s = scin.nextLine();
-		scin.close();*/
 		/*InputStreamReader streamReader = new InputStreamReader(System.in);
 	    BufferedReader bufferedReader = new BufferedReader(streamReader);
-	    String s = bufferedReader.readLine();*/
-		String s = System.console().readLine();
+	    String s = bufferedReader.readLine();
+		String s = System.console().readLine();*/
 		switch (s)
 		{
 		case "o":
 			Worker.pourOil();
+			break;
 		case "h":
 			Worker.pourHoney();
+			break;
 		case "w":
 			/*
 			if(Worker.moveWorker(Direction.UP))
@@ -63,14 +72,23 @@ public class Game
 			}
 			*/
 			Worker.moveWorker(Direction.UP);
+			break;
 		case "a":
 			Worker.moveWorker(Direction.LEFT);
+			break;
 		case "s":
 			Worker.moveWorker(Direction.DOWN);
+			break;
 		case "d":
 			Worker.moveWorker(Direction.RIGHT);
+			break;
 		case "e":
 			return true;
+		}
+		if (s.startsWith("changestr")){
+			String[] splitStr = s.split(" ");
+			int requiredStr = Integer.parseInt(splitStr[1]);
+			Worker.setStrength(requiredStr);
 		}
 		Map.draw();
 		return false;
@@ -104,7 +122,7 @@ public class Game
 	private static void changePlayer()
 	{
 		int i = Workers.indexOf(Worker);
-		if(Workers.get(i + 1) != null)
+		if(i != Workers.size() - 1)
 		{
 			Worker = Workers.get(i + 1);
 		}
@@ -117,5 +135,10 @@ public class Game
 	static void addWorker(Worker w)
 	{
 		Workers.add(w);
+	}
+	
+	static void killWorker(Worker w)
+	{
+		Workers.remove(w);
 	}
 }

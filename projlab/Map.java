@@ -39,10 +39,10 @@ public class Map
 		for(int i = 0; i < y ; i++)
 			for(int j = 0; j < x ; j++)
 			{
-				if(i > 0) Fields[i][j].addNeighbor(Fields[i - 1][j], Direction.UP);
-				if(i < y - 1) Fields[i][j].addNeighbor(Fields[i + 1][j], Direction.DOWN);
-				if(j > 0) Fields[i][j].addNeighbor(Fields[i][j - 1], Direction.LEFT);
-				if(j < x - 1) Fields[i][j].addNeighbor(Fields[i][j + 1], Direction.RIGHT);
+				if(i > 0) Fields[i][j].addNeighbor(Fields[i - 1][j], Direction.LEFT);
+				if(i < y - 1) Fields[i][j].addNeighbor(Fields[i + 1][j], Direction.RIGHT);
+				if(j > 0) Fields[i][j].addNeighbor(Fields[i][j - 1], Direction.UP);
+				if(j < x - 1) Fields[i][j].addNeighbor(Fields[i][j + 1], Direction.DOWN);
 				if(Workers[i][j] != null)
 				{
 					Workers[i][j].initWorker(Fields[i][j], 3);
@@ -50,6 +50,11 @@ public class Map
 				}
 				if(Boxes[i][j] != null)	
 					Boxes[i][j].initBox(Fields[i][j]);
+				if(Fields[i][j].getClass().getName()=="projlab.Switch") {
+					Switch s = (Switch)Fields[i][j];
+					s.setHybrid((Hybrid)Fields[i - 1][j]);
+					Fields[i][j] = s;
+				}
 			}
 		draw();
 	}
@@ -62,13 +67,13 @@ public class Map
 			for(int i = 0; i < y ; i++)
 			{
 				Map[i][j] = Fields[i][j].getChar();
-				
+				/*
 				if(Boxes[i][j] != null)
 					Map[i][j] = Boxes[i][j].getChar();
 				
 				if(Workers[i][j] != null)
 					Map[i][j] = Workers[i][j].getChar();
-				
+				*/
 				Map[i][j] += "\t";
 				
 				System.out.print(Map[i][j]);
@@ -128,10 +133,10 @@ public class Map
                 		Fields[i][columnIndex].pourHoney();
                 		break;
                 	case "_":
-                		Fields[i][columnIndex] = new Wall();
+                		Fields[i][columnIndex] = new Field();
                 		Fields[i][columnIndex].pourOil();
                 		break;
-                	case "?":
+                	case "!":
                 		Fields[i][columnIndex] = new EndPos();
                 		break;
                 	case ".":

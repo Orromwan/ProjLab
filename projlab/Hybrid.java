@@ -122,15 +122,37 @@ public class Hybrid extends Field
 		}
 	}
 	/**
-         * Visszadja az õt reprezentáló karaktert állapottól függõen
-         * @return a visszatérési karakter
-         */
-        @Override
-        String getChar()
-        {
-            if (Status)
-                return "O";
-            else
-                return "o";
-        }
+	 * Visszadja az õt reprezentáló karaktert állapottól függõen
+	 * @return a visszatérési karakter
+	 */
+	@Override
+	String getChar()
+	{
+		if (Status)
+			return "O";
+		else
+		{
+			switch(Containstate)
+			{
+			case BOX:
+				return "B";
+			case WORKERS:
+				return "W";
+			case CLEAR:
+				switch(Liquidstate)
+				{
+				case OIL:
+					return "_";
+				case HONEY:
+					return ":";
+				case NONE:
+					return "o";
+				default:
+					return "";
+				}
+			default:
+				return "";
+			}
+		}
+	}
 }
