@@ -1,25 +1,25 @@
 package projlab;
 
 /**
- * A Switch mezõ osztálya, figyeli a kapcsoló állapotát
- * és annak függvényében mûködteti a hozzá tartozó hibrid mezõt.
+ * A Switch mezï¿½ osztï¿½lya, figyeli a kapcsolï¿½ ï¿½llapotï¿½t
+ * ï¿½s annak fï¿½ggvï¿½nyï¿½ben mï¿½kï¿½dteti a hozzï¿½ tartozï¿½ hibrid mezï¿½t.
  */
 public class Switch extends Field 
 {
-	// A kapcsolóhoz tartozó hybrid mezõ
+	// A kapcsolï¿½hoz tartozï¿½ hybrid mezï¿½
 	private Hybrid Hybrid;
 	
-	//A hybrid mezõ beállításához
+	//A hybrid mezï¿½ beï¿½llï¿½tï¿½sï¿½hoz
 	void setHybrid(Hybrid h)
 	{
 		Hybrid = h;
 	}
 	
 	/**
-	 * Doboz fogadása, doboz erre a mezõre kerül.
+	 * Doboz fogadï¿½sa, doboz erre a mezï¿½re kerï¿½l.
 	 * @param b - A doboz
-	 * @param d - Ebbõl az irányból
-	 * @return - sikeres volt-e a doboz fogadása
+	 * @param d - Ebbï¿½l az irï¿½nybï¿½l
+	 * @return - sikeres volt-e a doboz fogadï¿½sa
 	 */
 	boolean acceptBox(Box b, Direction d, int str)
 	{
@@ -61,9 +61,9 @@ public class Switch extends Field
 	}
 	
 	/**
-	 * Munkás fogadása, munkás mezõre lép/mozog.
-	 * @param w - a munkás
-	 * @param d - irányból érkezik
+	 * Munkï¿½s fogadï¿½sa, munkï¿½s mezï¿½re lï¿½p/mozog.
+	 * @param w - a munkï¿½s
+	 * @param d - irï¿½nybï¿½l ï¿½rkezik
 	 */
 	boolean acceptWorker(Worker w, Direction d)
 	{
@@ -96,32 +96,38 @@ public class Switch extends Field
 		}
 	}
 	/**
-     * Visszaadja a switchet reprezentáló karaktert 
+     * Visszaadja a switchet reprezentï¿½lï¿½ karaktert 
      * @return - a karakter
      */
     @Override
 	String getChar()
 	{
+    	String r=new String();
+    	switch(Liquidstate)
+		{
+		case OIL:
+			r+="_";
+			break;
+		case HONEY:
+			r+=":";
+			break;
+		default:
+			r+=" ";
+			break;
+		}
+		r+="L";
 		switch(Containstate)
 		{
 		case BOX:
-			return "B";
+			r+="B";
+			break;
 		case WORKERS:
-			return "W";
-		case CLEAR:
-			switch(Liquidstate)
-			{
-			case OIL:
-				return "_L";
-			case HONEY:
-				return ":L";
-			case NONE:
-				return "L";
-			default:
-				return "";
-			}
+			r+="W";
+			break;			
 		default:
-			return "";
+			r+=" ";
+			break;
 		}
+		return r;
 	}
 }

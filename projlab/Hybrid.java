@@ -1,16 +1,16 @@
 package projlab;
 
 /**
- * A Hybrid mezõ osztálya, tárolja a mezõ állapotát.
+ * A Hybrid mezï¿½ osztï¿½lya, tï¿½rolja a mezï¿½ ï¿½llapotï¿½t.
  */
 public class Hybrid extends Field 
 {
-	// A hibrid állapotát tároló változó
+	// A hibrid ï¿½llapotï¿½t tï¿½rolï¿½ vï¿½ltozï¿½
 	private boolean Status = false;
 
 
 	/**
-	 * A hibrid aktiválása, lyuk lesz.
+	 * A hibrid aktivï¿½lï¿½sa, lyuk lesz.
 	 */
 	void switchOn()
 	{
@@ -20,7 +20,7 @@ public class Hybrid extends Field
 	}	
 
 	/**
-	 *  A hibrid bezárása, egyszerû mezõ lesz.
+	 *  A hibrid bezï¿½rï¿½sa, egyszerï¿½ mezï¿½ lesz.
 	 */
 	void close()
 	{
@@ -30,10 +30,10 @@ public class Hybrid extends Field
 	}
 
 	/**
-	 * Doboz fogadása, doboz erre a mezõre kerül.
+	 * Doboz fogadï¿½sa, doboz erre a mezï¿½re kerï¿½l.
 	 * @param b - A doboz
-	 * @param d - Ebbõl az irányból
-	 * @return - sikeres volt-e a doboz fogadása
+	 * @param d - Ebbï¿½l az irï¿½nybï¿½l
+	 * @return - sikeres volt-e a doboz fogadï¿½sa
 	 */
 	boolean acceptBox(Box b, Direction d, int str)
 	{
@@ -48,7 +48,7 @@ public class Hybrid extends Field
 			switch(Containstate)
 			{
 			case BOX:
-				
+
 				int fr = Liquidstate.friction();
 				boolean r = str >= fr;
 				if(r)
@@ -80,9 +80,9 @@ public class Hybrid extends Field
 	}
 
 	/**
-	 * Munkás fogadása, munkás mezõre lép/mozog.
-	 * @param w - a munkás
-	 * @param d - irányból érkezik
+	 * Munkï¿½s fogadï¿½sa, munkï¿½s mezï¿½re lï¿½p/mozog.
+	 * @param w - a munkï¿½s
+	 * @param d - irï¿½nybï¿½l ï¿½rkezik
 	 */
 	boolean acceptWorker(Worker w, Direction d)
 	{
@@ -98,7 +98,7 @@ public class Hybrid extends Field
 			switch(Containstate)
 			{
 			case BOX:
-				
+
 				int str = w.getStrength();
 				int fr = Liquidstate.friction();
 				boolean r = str >= fr;
@@ -122,37 +122,44 @@ public class Hybrid extends Field
 		}
 	}
 	/**
-	 * Visszadja az õt reprezentáló karaktert állapottól függõen
-	 * @return a visszatérési karakter
+	 * Visszadja az ï¿½t reprezentï¿½lï¿½ karaktert ï¿½llapottï¿½l fï¿½ggï¿½en
+	 * @return a visszatï¿½rï¿½si karakter
 	 */
 	@Override
 	String getChar()
 	{
 		if (Status)
-			return "O";
+			return " O ";
 		else
 		{
+			String r=new String();
+			switch(Liquidstate)
+			{
+			case OIL:
+				r+="_";
+				break;
+			case HONEY:
+				r+=":";
+				break;
+			default:
+				r+=" ";
+				break;
+			}
+			r+="o";
 			switch(Containstate)
 			{
 			case BOX:
-				return "B";
+				r+="B";
+				break;
 			case WORKERS:
-				return "W";
-			case CLEAR:
-				switch(Liquidstate)
-				{
-				case OIL:
-					return "_";
-				case HONEY:
-					return ":";
-				case NONE:
-					return "o";
-				default:
-					return "";
-				}
+				r+="W";
+				break;			
 			default:
-				return "";
+				r+=" ";
+				break;
 			}
+			return r;
 		}
 	}
+
 }

@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Game
 {
 	// A pálya
-	static private Map Map;
+	static Map GameMap;
 	
 	// Az utoljára aktiv munkás
 	static private Worker Worker;
@@ -24,13 +24,13 @@ public class Game
 	 * A játék menete
 	 * @throws InterruptedException
 	 */
-	static void run(Map map) throws InterruptedException
+	static void run(Map map, Window w) throws InterruptedException
 	{
-		Map = map;
+		GameMap = map;
 		Worker = Workers.get(0);
 		while(true)
 		{
-			if(handleInput())
+			if(handleInput(w))
 			{
 				scin.close();
 				break;
@@ -49,9 +49,8 @@ public class Game
 	 * Felhasználói inputok kezelése
 	 * @return
 	 */
-	private static boolean handleInput()
+	private static boolean handleInput(Window w)
 	{
-		Scanner scin = new Scanner(System.in);
 		String s = scin.nextLine();
 		/*InputStreamReader streamReader = new InputStreamReader(System.in);
 	    BufferedReader bufferedReader = new BufferedReader(streamReader);
@@ -95,7 +94,8 @@ public class Game
 			int requiredStr = Integer.parseInt(splitStr[1]);
 			Worker.setStrength(requiredStr);
 		}
-		Map.draw();
+		GameMap.draw();
+		w.repaint();
 		return false;
 	}
 	/*private static void updateMapWorker(Field oldField, Field newField)
@@ -115,7 +115,7 @@ public class Game
 		//PRINT
 		System.out.println("Game - addPointsToLastWorker called");
 		Worker.incPoints(p);
-		Map.boxIsFinished();
+		GameMap.boxIsFinished();
 	}
 
 	//Aktuális munkás beállítása

@@ -3,41 +3,41 @@ package projlab;
 import java.util.*;
 
 /**
- * Mezõ osztály, számon tartja a rajta lévõ dobozt,
- * a mezõ szomszédos mezõit, a rajta lévõ munkásokat,
- * és mezõ állapotát.
+ * Mezï¿½ osztï¿½ly, szï¿½mon tartja a rajta lï¿½vï¿½ dobozt,
+ * a mezï¿½ szomszï¿½dos mezï¿½it, a rajta lï¿½vï¿½ munkï¿½sokat,
+ * ï¿½s mezï¿½ ï¿½llapotï¿½t.
  */
 public class Field  
 {
-	// A mezõ pozíciója a térképen
+	// A mezï¿½ pozï¿½ciï¿½ja a tï¿½rkï¿½pen
 	protected int xPos;
 	protected int yPos;
 	
-	// A mezõn lévõ doboz
+	// A mezï¿½n lï¿½vï¿½ doboz
 	protected Box Box;
 
-	// A mezõ szomszédos mezõi
+	// A mezï¿½ szomszï¿½dos mezï¿½i
 	protected Field[] Neighbors = new Field[4];
 
-	// A mezõn álló munkások listája
+	// A mezï¿½n ï¿½llï¿½ munkï¿½sok listï¿½ja
 	protected ArrayList<Worker> Workers = new ArrayList<Worker>();
 
-	// Mi van a mezõn
+	// Mi van a mezï¿½n
 	protected FieldStatus Containstate = FieldStatus.CLEAR;
 
-	// Milyen folyadék van a mezõn
+	// Milyen folyadï¿½k van a mezï¿½n
 	protected Liquid Liquidstate = Liquid.NONE;
 
-	//A pálya építéséhez
+	//A pï¿½lya ï¿½pï¿½tï¿½sï¿½hez
 	void addNeighbor(Field f, Direction d)
 	{
 		Neighbors[d.getDir()] = f;
 	}
 
 	/**
-	 * Vissza adja a megadott irányban lévõ szomszédos mezõt
-	 * @param dir - Az irány
-	 * @return - A szomszédos mezõ
+	 * Vissza adja a megadott irï¿½nyban lï¿½vï¿½ szomszï¿½dos mezï¿½t
+	 * @param dir - Az irï¿½ny
+	 * @return - A szomszï¿½dos mezï¿½
 	 */
 
 	Field getNeighbor(Direction dir)
@@ -47,7 +47,7 @@ public class Field
 		return Neighbors[dir.getDir()];
 	}
 
-	//Munkás hozzáadása, update
+	//Munkï¿½s hozzï¿½adï¿½sa, update
 	void addWorker(Worker w)
 	{
 		Workers.add(w);
@@ -55,9 +55,9 @@ public class Field
 	}
 
 	/**
-	 * Munkás fogadása, munkás mezõre lép/mozog.
-	 * @param w - a munkás
-	 * @param d - irányból érkezik
+	 * Munkï¿½s fogadï¿½sa, munkï¿½s mezï¿½re lï¿½p/mozog.
+	 * @param w - a munkï¿½s
+	 * @param d - irï¿½nybï¿½l ï¿½rkezik
 	 */
 	boolean acceptWorker(Worker w, Direction d)
 	{
@@ -83,7 +83,7 @@ public class Field
 		}
 	}
 
-	//Doboz hozzáadása, update
+	//Doboz hozzï¿½adï¿½sa, update
 	void addBox(Box b)
 	{
 		this.Box = b;
@@ -91,10 +91,10 @@ public class Field
 	}
 
 	/**
-	 * Doboz fogadása, doboz erre a mezõre kerül.
+	 * Doboz fogadï¿½sa, doboz erre a mezï¿½re kerï¿½l.
 	 * @param b - A doboz
-	 * @param d - Ebbõl az irányból
-	 * @return - sikeres volt-e a doboz fogadása
+	 * @param d - Ebbï¿½l az irï¿½nybï¿½l
+	 * @return - sikeres volt-e a doboz fogadï¿½sa
 	 */
 	boolean acceptBox(Box b, Direction d, int str)
 	{
@@ -128,10 +128,10 @@ public class Field
 	}
 
 	/**
-	 * Munkás(oka)t rá tolnak a mezõre
-	 * @param l - Munkás/Munkások listája akik rákerülnek
-	 * @param d - Ebbõl az irányból
-	 * @return - Sikeres volt-e a mozgatás
+	 * Munkï¿½s(oka)t rï¿½ tolnak a mezï¿½re
+	 * @param l - Munkï¿½s/Munkï¿½sok listï¿½ja akik rï¿½kerï¿½lnek
+	 * @param d - Ebbï¿½l az irï¿½nybï¿½l
+	 * @return - Sikeres volt-e a mozgatï¿½s
 	 */
 	void acceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
 	{
@@ -154,7 +154,7 @@ public class Field
 	}
 
 	/**
-	 * Doboz leszedése a mezõrõl.
+	 * Doboz leszedï¿½se a mezï¿½rï¿½l.
 	 * @param b - A doboz
 	 */
 	void removeBox(Box b)
@@ -165,8 +165,8 @@ public class Field
 	}
 
 	/**
-	 * Munkás leszedése a mezõrõl.
-	 * @param w - A munkás
+	 * Munkï¿½s leszedï¿½se a mezï¿½rï¿½l.
+	 * @param w - A munkï¿½s
 	 */
 	void removeWorker(Worker w)
 	{
@@ -178,7 +178,7 @@ public class Field
 	}
 
 	/**
-	 * Méz öntése a mezõre
+	 * Mï¿½z ï¿½ntï¿½se a mezï¿½re
 	 */
 	void pourHoney()
 	{
@@ -187,7 +187,7 @@ public class Field
 	}
 
 	/**
-	 * Olaj öntése a mezõre
+	 * Olaj ï¿½ntï¿½se a mezï¿½re
 	 */
 	void pourOil()
 	{
@@ -195,34 +195,40 @@ public class Field
 		Liquidstate = Liquid.OIL;
 	}
 	/**
-         * Visszaadja a mezõt reprezentáló karaktert, állapottól függõen
+         * Visszaadja a mezï¿½t reprezentï¿½lï¿½ karaktert, ï¿½llapottï¿½l fï¿½ggï¿½en
          * @return - a karakter amit visszaad
          */
 	String getChar()
 	{
+		String r=new String();
+		switch(Liquidstate)
+		{
+		case OIL:
+			r+="_";
+			break;
+		case HONEY:
+			r+=":";
+			break;
+		default:
+			r+=" ";
+			break;
+		}
+		r+=".";
 		switch(Containstate)
 		{
 		case BOX:
-			return "B";
+			r+="B";
+			break;
 		case WORKERS:
-			return "W";
-		case CLEAR:
-			switch(Liquidstate)
-			{
-			case OIL:
-				return "_";
-			case HONEY:
-				return ":";
-			case NONE:
-				return ".";
-			default:
-				return "";
-			}
+			r+="W";
+			break;			
 		default:
-			return "";
+			r+=" ";
+			break;
 		}
+		return r;
 	}
-	public void setXPos(int x)
+/*	public void setXPos(int x)
 	{
 		xPos = x;
 	}
@@ -237,5 +243,5 @@ public class Field
 	public int getYPos()
 	{
 		return yPos;
-	}
+	}*/
 }

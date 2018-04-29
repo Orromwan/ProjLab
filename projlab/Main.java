@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		System.out.println("Válassz teszt szekvenciát 1-10ig a szám megadásával:");
+		System.out.println("Vï¿½lassz teszt szekvenciï¿½t 1-10ig a szï¿½m megadï¿½sï¿½val:");
 
 		/*String inputStr = System.console().readLine();
 		int input = Integer.parseInt(inputStr);
@@ -29,7 +29,7 @@ public class Main {
 			case 11: seq11();break;
 			case 12: seq12();break;
 			case 13: seq13();break;
-			default: System.out.println("Rossz érték!");
+			default: System.out.println("Rossz ï¿½rtï¿½k!");
 		}*/
 		
 		Map map = new Map();
@@ -63,11 +63,13 @@ public class Main {
 		//Map.create();
 		map.create();
 		
-		Game.run(map);
+		Window window=new Window(map.getMap());
+		
+		Game.run(map, window);
 	}
 }
 /*
-	//1. Munkás üres mezõre lép
+	//1. Munkï¿½s ï¿½res mezï¿½re lï¿½p
 	public static void seq01()
 	{			
 		Field f1 = new Field();
@@ -78,7 +80,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//2. Dobozt tol Üres mezõre
+	//2. Dobozt tol ï¿½res mezï¿½re
 	public static void seq02()
 	{
 		Field f1 = new Field();
@@ -124,7 +126,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//5. Kapcsolóra tol
+	//5. Kapcsolï¿½ra tol
 	public static void seq05()
 	{
 		Field f1 = new Field();
@@ -143,7 +145,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//6. Letolja a kapcsolóról
+	//6. Letolja a kapcsolï¿½rï¿½l
 	public static void seq06()
 	{
 		Field f1 = new Field();
@@ -162,7 +164,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//7. Elfogadóhelyre tol
+	//7. Elfogadï¿½helyre tol
 	public static void seq07()
 	{
 		Field f1 = new Field();
@@ -178,7 +180,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//8. Több dobozt tol
+	//8. Tï¿½bb dobozt tol
 	public static void seq08()
 	{
 		Field f1 = new Field();
@@ -197,7 +199,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//9. Falnak tol több dobozt
+	//9. Falnak tol tï¿½bb dobozt
 	public static void seq09()
 	{
 		Field f1 = new Field();
@@ -216,7 +218,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//10. Összenyom
+	//10. ï¿½sszenyom
 	public static void seq10() 
 	{
 		Field f1 = new Field();
@@ -236,7 +238,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}	
 
-	//11. EnPosra lép
+	//11. EnPosra lï¿½p
 	public static void seq11()
 	{
 		Field f1 = new Field();
@@ -247,7 +249,7 @@ public class Main {
 		w1.MoveWorker(Direction.RIGHT);
 	}
 
-	//12. Lyukra lép
+	//12. Lyukra lï¿½p
 	public static void seq12()
 	{
 		Field f1 = new Field();

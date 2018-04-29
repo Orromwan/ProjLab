@@ -3,16 +3,16 @@ package projlab;
 import java.util.*;
 
 /**
- * A Wall mezõ osztálya
+ * A Wall mezï¿½ osztï¿½lya
  */
 public class Wall extends Field 
 {
 
 	/**
-	 * Doboz fogadása, doboz erre a mezõre kerül.
+	 * Doboz fogadï¿½sa, doboz erre a mezï¿½re kerï¿½l.
 	 * @param b - A doboz
-	 * @param d - Ebbõl az irányból
-	 * @return - sikeres volt-e a doboz fogadása
+	 * @param d - Ebbï¿½l az irï¿½nybï¿½l
+	 * @return - sikeres volt-e a doboz fogadï¿½sa
 	 */
 	boolean acceptBox(Box b, Direction d, int str)
 	{
@@ -23,23 +23,23 @@ public class Wall extends Field
 	}
 
 	/**
-	 * Munkás fogadása, munkás mezõre lép/mozog.
-	 * @param w - a munkás
-	 * @param d - irányból érkezik
+	 * Munkï¿½s fogadï¿½sa, munkï¿½s mezï¿½re lï¿½p/mozog.
+	 * @param w - a munkï¿½s
+	 * @param d - irï¿½nybï¿½l ï¿½rkezik
 	 */
 	boolean acceptWorker(Worker w, Direction d)
 	{
 		//PRINT
 		System.out.println(toString() + " - acceptWorker called");
-		// Munkással nem léphetünk falra.
+		// Munkï¿½ssal nem lï¿½phetï¿½nk falra.
 		return false;
 	}
 
 	/**
-	 * Munkás(oka)t rá tolnak a mezõre
-	 * @param l - Munkás/Munkások listája akik rákerülnek
-	 * @param d - Ebbõl az irányból
-	 * @return - Sikeres volt-e a mozgatás
+	 * Munkï¿½s(oka)t rï¿½ tolnak a mezï¿½re
+	 * @param l - Munkï¿½s/Munkï¿½sok listï¿½ja akik rï¿½kerï¿½lnek
+	 * @param d - Ebbï¿½l az irï¿½nybï¿½l
+	 * @return - Sikeres volt-e a mozgatï¿½s
 	 */
 	void acceptUnwillingWorkers(ArrayList<Worker> l, Direction d)
 	{
@@ -51,12 +51,12 @@ public class Wall extends Field
 		}
 	}
 	/**
-     * Visszadja az õt reprezentáló karaktert
-     * @return a visszatérési karakter
+     * Visszadja az ï¿½t reprezentï¿½lï¿½ karaktert
+     * @return a visszatï¿½rï¿½si karakter
      */
     @Override
     String getChar()
     {
-        return "X";
+        return " X ";
     }
 }
