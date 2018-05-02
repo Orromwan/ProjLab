@@ -6,7 +6,7 @@ package projlab;
  */
 public class EndPos extends Field 
 {
-	
+
 	/**
 	 * Doboz fogad�sa, doboz erre a mez�re ker�l.
 	 * @param b - A doboz
@@ -20,23 +20,11 @@ public class EndPos extends Field
 		switch(Containstate)
 		{
 		case BOX:
-			
-			int fr = Liquidstate.friction();
-			boolean r = str >= fr;
-			if(r)
-			{
-				r = Neighbors[d.getDir()].acceptBox(Box, d, str - fr);
-				if(r)
-				{
-					b.updateBox(this);
-					addBox(b);
-					Game.addPointsToLastWorker(1);
-				}
-			}
-			return r;
+
+			return false;
 
 		case WORKERS:
-			
+
 			acceptUnwillingWorkers(Workers, d);
 			b.updateBox(this);
 			addBox(b);
@@ -44,14 +32,31 @@ public class EndPos extends Field
 			return true;
 
 		default:
-			
+
 			b.updateBox(this);
 			addBox(b);
 			Game.addPointsToLastWorker(1);
 			return true;
 		}
-		
 
+
+	}
+
+	boolean acceptWorker(Worker w, Direction d)
+	{
+		//PRINT
+		System.out.println(toString() + " - acceptWorker called");
+		switch(Containstate)
+		{
+		case BOX:
+
+			return false;
+
+		default:
+			w.updateWorker(this);
+			addWorker(w);
+			return true;
+		}
 	}
 	/**
 	 * Visszaadja az EndPost reprezent�l� karaktert
@@ -61,7 +66,7 @@ public class EndPos extends Field
 	String getChar()
 	{
 		String r=new String();
-    	switch(Liquidstate)
+		switch(Liquidstate)
 		{
 		case OIL:
 			r+="_";

@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class Window extends JFrame {
 
-	JPanel Panel=new JPanel();
+//	JPanel Panel=new JPanel();
 
 	String [][] DrawKey;
 
