@@ -52,10 +52,6 @@ public class Game
 	private static boolean handleInput(Window w)
 	{
 		String s = scin.nextLine();
-		/*InputStreamReader streamReader = new InputStreamReader(System.in);
-	    BufferedReader bufferedReader = new BufferedReader(streamReader);
-	    String s = bufferedReader.readLine();
-		String s = System.console().readLine();*/
 		switch (s)
 		{
 		case "o":
@@ -65,13 +61,6 @@ public class Game
 			Worker.pourHoney();
 			break;
 		case "w":
-			/*
-			if(Worker.moveWorker(Direction.UP))
-			{
-				newField = Worker.getPosition();
-				updateMapWorker(oldField, newField);
-			}
-			*/
 			Worker.moveWorker(Direction.UP);
 			break;
 		case "a":
@@ -98,13 +87,6 @@ public class Game
 		w.repaint();
 		return false;
 	}
-	/*private static void updateMapWorker(Field oldField, Field newField)
-	{
-		int oldXPos = oldField.getXPos();
-		int oldYPos = oldField.getYPos();
-		int newXPos = newField.getXPos();
-		int newYPos = newField.getYPos();
-	}*/
 	/**
 	 * Az utoljára aktiv munkás pontjainak növelése a 
 	 * paraméterül kapott értékkel.
