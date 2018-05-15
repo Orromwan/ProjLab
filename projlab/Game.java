@@ -17,7 +17,7 @@ public class Game implements InputHandlerInterface
 	// A window amit frissíteni kell
 	static private Window window;
 	// Fut-e éppen a dolog
-        private boolean running;
+    static private boolean running;
 
 	//A játékosok listája
 	static private ArrayList<Worker> Workers = new ArrayList<Worker>();
@@ -25,28 +25,29 @@ public class Game implements InputHandlerInterface
 	static Scanner scin = new Scanner(System.in);
 
 	/**
-         * Beállítja tagváltozónak a paraméterként kapott mapot
-         * @param map 
-         */
+     * Beállítja tagváltozónak a paraméterként kapott mapot
+     * @param map 
+     */
 	public void SetMap(Map map)
         {
             GameMap = map;
         }
-        /**
-         * Beállítja tagváltozónak a paraméterként kapott Window-ot
-         * @param w 
-         */
-        public void SetWindow(Window w)
-        {
-            window = w;
-            running = true;
-        }
+	
+    /**
+     * Beállítja tagváltozónak a paraméterként kapott Window-ot
+     * @param w 
+     */
+    public static void SetWindow(Window w)
+    {
+        window = w;
+        running = true;
+    }
 
 	/**
 	 * Felhasználói inputok kezelése
 	 * @return
 	 */
-	private static boolean handleInput(String s)
+	private boolean handleInput(String s)
 	{
 		
 		switch (s)
@@ -71,6 +72,22 @@ public class Game implements InputHandlerInterface
 			break;
 		case "p":
             System.out.println("Worker points: "+ Worker.getPoints());
+			break;
+		case "q":
+            window.ShowMenu = !window.ShowMenu;
+			break;
+		case "n":
+            if (window.ShowMenu)
+            {
+            	String MapName = GameMap.MapName;
+        		GameMap = new Map();
+        		GameMap.initMapFromFile(MapName);
+        		GameMap.create();
+        		window = new Window(GameMap.getMap());
+                SetWindow(window);
+                window.setInputHandler(this);
+        		window.ShowMenu = false;
+            }
 			break;
 		case "e":
 			return true;

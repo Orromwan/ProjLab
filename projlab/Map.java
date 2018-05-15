@@ -22,6 +22,8 @@ public class Map
 	private int BoxesAtFinish;
 	// A dobozok sz�ma
 	private int BoxCount;
+	//Utoljara betoltott palya
+	public String MapName;
 
 	/**
 	 * A p�lya inicializ�l�sa a p�ly�n l�v� elemek m�trixaival
@@ -88,12 +90,13 @@ public class Map
 	public void initMapFromFile(String fileName)
 	{
         try {
+        	MapName = fileName;
     		String line = null;
     		String[] tempFields = null;
     		int rowCount = 0, columnIndex = 0;
     		
             // F�jl olvas�sa (default encodingban)
-            FileReader fileReader = new FileReader(fileName);
+            FileReader fileReader = new FileReader(MapName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             while((line = bufferedReader.readLine()) != null) {
@@ -160,11 +163,11 @@ public class Map
             bufferedReader.close();         
         }
         catch(FileNotFoundException ex) {
-            System.out.println("Unable to open file '" + fileName + "'");
+            System.out.println("Unable to open file '" + MapName + "'");
             ex.printStackTrace();              
         }
         catch(IOException ex) {
-            System.out.println("Error reading file '" + fileName + "'");
+            System.out.println("Error reading file '" + MapName + "'");
             ex.printStackTrace();
         }
 	}

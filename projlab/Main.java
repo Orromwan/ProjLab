@@ -33,41 +33,15 @@ public class Main {
 		}*/
 		
 		Map map = new Map();
-		
 		map.initMapFromFile("test.txt");
-
-		/*Hybrid h = new Hybrid();
-		Switch s = new Switch();
-		s.setHybrid(h);
-
-		Field[][] f= {
-				{new Wall(), new Wall(),  new Wall(),  new Wall(),   new Wall()},
-				{new Wall(), new Field(), new Field(), new EndPos(), new Wall()},
-				{new Wall(), new Field(), new Wall(),  new Field(),  new Wall()},
-				{new Wall(), h,		 	  s,		   new Field(),  new Wall()},
-				{new Wall(), new Wall(),  new Wall(),  new Wall(),   new Wall()}};
-		Worker[][] w= {
-				{null, null,         null, null, null}, 
-				{null, new Worker(), null, null, null},
-				{null, null,         null, null, null},
-				{null, null,         null, null, null},
-				{null, null,         null, null, null}};
-		Box[][] b= {
-			{null, null, null,      null, null}, 
-			{null, null, new Box(), null, null},
-			{null, null, null,      null, null},
-			{null, null, null,      null, null},
-			{null, null, null,      null, null}};*/
-		
-		//Map.initMap(f, w, b);
-		//Map.create();
 		map.create();
-		Game g = new Game();
-                g.SetMap(map);
-		Window window=new Window(map.getMap());
-                g.SetWindow(window);
-                window.setInputHandler(g);
 		
+		Game g = new Game();
+        g.SetMap(map);
+        
+		Window window = new Window(map.getMap());
+        g.SetWindow(window);
+        window.setInputHandler(g);
 	}
 }
 /*
