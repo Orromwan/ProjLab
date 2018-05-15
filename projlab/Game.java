@@ -24,10 +24,18 @@ public class Game implements InputHandlerInterface
 	
 	static Scanner scin = new Scanner(System.in);
 
+	/**
+         * Beállítja tagváltozónak a paraméterként kapott mapot
+         * @param map 
+         */
 	public void SetMap(Map map)
         {
             GameMap = map;
         }
+        /**
+         * Beállítja tagváltozónak a paraméterként kapott Window-ot
+         * @param w 
+         */
         public void SetWindow(Window w)
         {
             window = w;
@@ -122,14 +130,13 @@ public class Game implements InputHandlerInterface
             if (running)
             {
                 Worker = Workers.get(0);
-		if(handleInput(c+"")) 
-                    running = false;
-                if(Workers.isEmpty())
-                    running = false;
-		if(GameMap.isGameOver())
-                    running = false;
+		if(handleInput(c+"") || Workers.isEmpty() || GameMap.isGameOver()) 
+                {   running = false;
+                    window.showAlert("Vege a jateknak!");
+                }
 			
-                changePlayer();
+                if (!Workers.isEmpty())
+                    changePlayer();
             }
         }
 }

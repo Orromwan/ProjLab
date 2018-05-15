@@ -20,11 +20,22 @@ public class Window extends JFrame {
 
 	private InputHandlerInterface window;
         
+		/**
+         * Beállítja a paraméterben kapott interfészt tagváltozóként
+         * @param iface 
+         */
         public void setInputHandler(InputHandlerInterface iface)
         {
             window = iface;
         }
-        
+        /**
+         * A felületre egy Alert Dialogot dob fel a megadott paraméterrel
+         * @param msg 
+         */
+        public void showAlert(String msg)
+        {
+            JOptionPane.showMessageDialog(null, msg);
+        }
 	Window(String [][] s)
 	{
 		super("Sokoban");
