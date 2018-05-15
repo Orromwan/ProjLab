@@ -1,4 +1,4 @@
-package projlab;
+﻿package projlab;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -62,10 +62,12 @@ public class Main {
 		//Map.initMap(f, w, b);
 		//Map.create();
 		map.create();
-		
+		Game g = new Game();
+                g.SetMap(map);
 		Window window=new Window(map.getMap());
+                g.SetWindow(window);
+                window.setInputHandler(g);
 		
-		Game.run(map, window);
 	}
 }
 /*

@@ -7,51 +7,40 @@ import java.util.Scanner;
  * A játék osztály, nyilvántartja a raktárat, elinditja és 
  * befejezi a játékot, munkások pontjait kiosztja.
  */
-public class Game
+public class Game implements InputHandlerInterface
 {
 	// A pálya
 	static Map GameMap;
 	
 	// Az utoljára aktiv munkás
 	static private Worker Worker;
+	// A window amit frissíteni kell
+	static private Window window;
+	// Fut-e éppen a dolog
+        private boolean running;
 
 	//A játékosok listája
 	static private ArrayList<Worker> Workers = new ArrayList<Worker>();
 	
 	static Scanner scin = new Scanner(System.in);
 
-	/**
-	 * A játék menete
-	 * @throws InterruptedException
-	 */
-	static void run(Map map, Window w) throws InterruptedException
-	{
-		GameMap = map;
-		Worker = Workers.get(0);
-		while(true)
-		{
-			if(handleInput(w))
-			{
-				scin.close();
-				break;
-			}
-			if(Workers.isEmpty())
-				break;
-			
-			if(map.isGameOver())
-				break;
-			
-			changePlayer();
-		}
-	}
+	public void SetMap(Map map)
+        {
+            GameMap = map;
+        }
+        public void SetWindow(Window w)
+        {
+            window = w;
+            running = true;
+        }
 
 	/**
 	 * Felhasználói inputok kezelése
 	 * @return
 	 */
-	private static boolean handleInput(Window w)
+	private static boolean handleInput(String s)
 	{
-		String s = scin.nextLine();
+		
 		switch (s)
 		{
 		case "o":
@@ -72,19 +61,14 @@ public class Game
 		case "d":
 			Worker.moveWorker(Direction.RIGHT);
 			break;
-		case "wpoints":
+		case "p":
             System.out.println("Worker points: "+ Worker.getPoints());
 			break;
 		case "e":
 			return true;
 		}
-		if (s.startsWith("changestr")){
-			String[] splitStr = s.split(" ");
-			int requiredStr = Integer.parseInt(splitStr[1]);
-			Worker.setStrength(requiredStr);
-		}
 		GameMap.draw();
-		w.repaint();
+		window.repaint();
 		return false;
 	}
 	/**
@@ -129,4 +113,23 @@ public class Game
 	{
 		Workers.remove(w);
 	}
+   	/**
+         * A beerkezo c inputot kezeli a megfelelo modon, ez a Window-tol jon
+         * @param c 
+         */
+         @Override
+         public void DispatchInput(char c) {
+            if (running)
+            {
+                Worker = Workers.get(0);
+		if(handleInput(c+"")) 
+                    running = false;
+                if(Workers.isEmpty())
+                    running = false;
+		if(GameMap.isGameOver())
+                    running = false;
+			
+                changePlayer();
+            }
+        }
 }

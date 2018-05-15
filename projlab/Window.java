@@ -2,6 +2,9 @@ package projlab;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
@@ -15,6 +18,13 @@ public class Window extends JFrame {
 
 	private int YPos=26;
 
+	private InputHandlerInterface window;
+        
+        public void setInputHandler(InputHandlerInterface iface)
+        {
+            window = iface;
+        }
+        
 	Window(String [][] s)
 	{
 		super("Sokoban");
@@ -23,6 +33,18 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		DrawKey=s;
 		setVisible(true);
+                KeyEventDispatcher dispatcher = new KeyEventDispatcher() {
+                    @Override
+                    public boolean dispatchKeyEvent(final KeyEvent e) {
+                      if (e.getID() == KeyEvent.KEY_TYPED) {
+                          window.DispatchInput(e.getKeyChar());
+                      }
+                      return false;
+                    }
+                  };
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(dispatcher);
+                
+                
 	}
 
 	@Override
