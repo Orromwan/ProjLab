@@ -15,18 +15,21 @@ public class Window extends JFrame {
 
 	String [][] DrawKey;
 
+	// Az eppen rajzolando elem pozicioja
 	private int XPos = 0;
 	private int YPos = 26;
 	
+	// A raktarablak merete
 	private int MapX = Map.x * 100;
 	private int MapY = Map.y * 100 + 26;
 	
+	// Menu bekapcsolva van-e
 	public Boolean ShowMenu = false;
 
 	private InputHandlerInterface window;
         
 	/**
-     * Beállítja a paraméterben kapott interfészt tagváltozóként
+     * Beallitja a parameterben kapott interfeszt tagvaltozokent
      * @param iface 
      */
     public void setInputHandler(InputHandlerInterface iface)
@@ -34,14 +37,18 @@ public class Window extends JFrame {
         window = iface;
     }
     /**
-     * A felületre egy Alert Dialogot dob fel a megadott paraméterrel
+     * A feluletre egy Alert Dialogot dob fel a megadott parameterrel
      * @param msg 
      */
     public void showAlert(String msg)
     {
         JOptionPane.showMessageDialog(null, msg);
     }
-    
+
+	/**
+	 * Konstruktor. Beallitja a grafikus elemeket es az inputhandler event-kezelest.
+     * @param s A raktar
+	 */
 	public Window(String [][] s)
 	{
 		super("Sokoban");
@@ -62,10 +69,13 @@ public class Window extends JFrame {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(dispatcher);
 	}
 
+	/**
+	 * A raktar vagy menu megrajzolasa.
+     * @param fileName a fajl neve
+	 */
 	@Override
 	public void paint(Graphics g)
 	{
-		// TODO Auto-generated method stub
 		super.paint(g);
 		g.setColor(Color.LIGHT_GRAY);
 		if (ShowMenu)
@@ -141,6 +151,10 @@ public class Window extends JFrame {
 			XPos = 0;
 		}
 	}
+
+	/**
+	 * Ablak bezarasa.
+	 */
 	public void close()
 	{
 		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));

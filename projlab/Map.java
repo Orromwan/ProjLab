@@ -5,28 +5,28 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 /**
- * A Map oszt�ly, a rakt�rat tartja sz�mon,
- * fel�piti a rakt�rat, �s elinditja a mozg�st.
+ * A Map osztaly, a raktarat tartja szamon,
+ * felepiti a raktarat, es elinditja a mozgast.
  */
 public class Map
 {
-	// A map dimenzi�i
+	// A map dimenzioi
 	static int x = 5;
 	static int y = 5;
-	// A mez�k
+	// A mezok
 	static private Field[][] Fields = new Field[y][x];
 	static private Worker[][] Workers = new Worker[y][x];
 	static private Box[][] Boxes = new Box[y][x];
 	static private String[][] Map = new String[y][x];
-	// A hely�kre tolt dobozok sz�ma
+	// A helyukre tolt dobozok szama
 	private int BoxesAtFinish;
-	// A dobozok sz�ma
+	// A dobozok szama
 	private int BoxCount;
 	//Utoljara betoltott palya
 	public String MapName;
 
 	/**
-	 * A p�lya inicializ�l�sa a p�ly�n l�v� elemek m�trixaival
+	 * A palya inicializalasa a palyan levo elemek matrixaival
 	 */
 	static void initMap(Field[][] f, Worker[][] w, Box[][] b)
 	{
@@ -35,7 +35,7 @@ public class Map
 		Boxes = b;
 	}
 	/**
-	 * A rakt�r fel�pit�se a mez�kb�l.
+	 * A raktar felepitese a mezokbol.
 	 */
 	void create()
 	{
@@ -63,7 +63,10 @@ public class Map
 			}
 		this.draw();
 	}
-	
+
+	/**
+	 * A raktar megrajzolasa.
+	 */
 	void draw()
 	{
 		System.out.println("Map - draw called");
@@ -72,13 +75,6 @@ public class Map
 			for(int i = 0; i < y ; i++)
 			{
 				Map[i][j] = Fields[i][j].getChar();
-				/*
-				if(Boxes[i][j] != null)
-					Map[i][j] = Boxes[i][j].getChar();
-				
-				if(Workers[i][j] != null)
-					Map[i][j] = Workers[i][j].getChar();
-				*/
 				Map[i][j] += "\t";
 				
 				System.out.print(Map[i][j]);
@@ -86,7 +82,11 @@ public class Map
 			System.out.print("\n");
 		}	
 	}
-	
+
+	/**
+	 * A raktar beolvasasa fajlbol.
+     * @param fileName a fajl neve
+	 */
 	public void initMapFromFile(String fileName)
 	{
         try {
@@ -95,7 +95,7 @@ public class Map
     		String[] tempFields = null;
     		int rowCount = 0, columnIndex = 0;
     		
-            // F�jl olvas�sa (default encodingban)
+            // Fajl olvasasa (default encodingban)
             FileReader fileReader = new FileReader(MapName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -111,7 +111,7 @@ public class Map
                 	Map = new String[rowCount][rowCount];
                 	x = y = rowCount;
                 }
-                // A beolvasott p�lya
+                // A beolvasott palya
                 System.out.println(line);
                 
                 for(int i = 0; i < rowCount; i++)
@@ -154,8 +154,6 @@ public class Map
                 		Fields[i][columnIndex] = new Field();
                 		break;
                 	}
- //           		Fields[i][columnIndex].setXPos(columnIndex);
- //           		Fields[i][columnIndex].setYPos(i);
                 }
                 columnIndex++;
             }
@@ -171,10 +169,18 @@ public class Map
             ex.printStackTrace();
         }
 	}
+
+	/**
+	 * Doboz kerult a vegpoziciora.
+	 */
 	public void boxIsFinished()
 	{
 		BoxesAtFinish++;
 	}
+
+	/**
+	 * Leellenorzi, hogy minden doboz a helyere kerult-e.
+	 */
 	public boolean isGameOver()
 	{
 		if(BoxesAtFinish == BoxCount)

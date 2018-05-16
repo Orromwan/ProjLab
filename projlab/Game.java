@@ -4,48 +4,47 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /** 
- * A játék osztály, nyilvántartja a raktárat, elinditja és 
- * befejezi a játékot, munkások pontjait kiosztja.
+ * A jatek osztaly, nyilvantartja a raktarat, elinditja és 
+ * befejezi a jatekot, munkasok pontjait kiosztja.
  */
 public class Game implements InputHandlerInterface
 {
-	// A pálya
-	static Map GameMap;
+	// A palya
+	static private Map GameMap;
 	
-	// Az utoljára aktiv munkás
+	// Az utoljára aktiv munkas
 	static private Worker Worker;
-	// A window amit frissíteni kell
+	// A window amit frissiteni kell
 	static private Window window;
-	// Fut-e éppen a dolog
+	// Fut-e eppen a dolog
     static private boolean running;
 
-	//A játékosok listája
+	//A jatekosok listaja
 	static private ArrayList<Worker> Workers = new ArrayList<Worker>();
-	
-	static Scanner scin = new Scanner(System.in);
 
 	/**
-     * Beállítja tagváltozónak a paraméterként kapott mapot
+     * Beallitja tagvaltozonak a parameterkent kapott mapot
      * @param map 
      */
 	public void SetMap(Map map)
-        {
-            GameMap = map;
-        }
+    {
+        GameMap = map;
+    }
 	
     /**
-     * Beállítja tagváltozónak a paraméterként kapott Window-ot
+     * Beallitja tagvaltozonak a parameterkent kapott Window-ot
      * @param w 
      */
-    public static void SetWindow(Window w)
+    public void SetWindow(Window w)
     {
         window = w;
         running = true;
     }
 
 	/**
-	 * Felhasználói inputok kezelése
-	 * @return
+	 * Felhasznaloi inputok kezelese
+     * @param s Input
+	 * @return Vege van-e a jateknak
 	 */
 	private boolean handleInput(String s)
 	{
@@ -77,17 +76,7 @@ public class Game implements InputHandlerInterface
             window.ShowMenu = !window.ShowMenu;
 			break;
 		case "n":
-            if (window.ShowMenu)
-            {
-            	String MapName = GameMap.MapName;
-        		GameMap = new Map();
-        		GameMap.initMapFromFile(MapName);
-        		GameMap.create();
-        		window = new Window(GameMap.getMap());
-                SetWindow(window);
-                window.setInputHandler(this);
-        		window.ShowMenu = false;
-            }
+            if (window.ShowMenu) startNewGame();
 			break;
 		case "e":
 			return true;
@@ -97,9 +86,9 @@ public class Game implements InputHandlerInterface
 		return false;
 	}
 	/**
-	 * Az utoljára aktiv munkás pontjainak növelése a 
-	 * paraméterül kapott értékkel.
-	 * @param p - Az érték.
+	 * Az utoljara aktiv munkas pontjainak novelese a 
+	 * parameterul kapott ertekkel.
+	 * @param p - Az ertek.
 	 */
 	static void addPointsToLastWorker(int p)
 	{
@@ -109,13 +98,13 @@ public class Game implements InputHandlerInterface
 		GameMap.boxIsFinished();
 	}
 
-	//Aktuális munkás beállítása
+	//Aktualis munkas beallitasa
 	static void setStartingWorker(Worker w)
 	{
 		Worker = w;
 	}
 	
-	//Játékos váltása
+	//Jatekos valtasa
 	private static void changePlayer()
 	{
 		int i = Workers.indexOf(Worker);
@@ -138,22 +127,36 @@ public class Game implements InputHandlerInterface
 	{
 		Workers.remove(w);
 	}
-   	/**
-         * A beerkezo c inputot kezeli a megfelelo modon, ez a Window-tol jon
-         * @param c 
-         */
-         @Override
-         public void DispatchInput(char c) {
-            if (running)
+	
+	/**
+    * Uj jatek inditasa ugyanazon a terkepen
+    */
+    public void startNewGame() {
+    	String MapName = GameMap.MapName;
+		GameMap = new Map();
+		GameMap.initMapFromFile(MapName);
+		GameMap.create();
+		/*window = new Window(GameMap.getMap());
+        SetWindow(window);
+        window.setInputHandler(this);*/
+		window.ShowMenu = false;
+	}
+  	/**
+    * A beerkezo c inputot kezeli a megfelelo modon, ez a Window-tol jon
+    * @param c 
+    */
+    @Override
+    public void DispatchInput(char c) {
+        if (running)
+        {
+            Worker = Workers.get(0);
+            if(handleInput(c + "") || Workers.isEmpty() || GameMap.isGameOver()) 
             {
-                Worker = Workers.get(0);
-		if(handleInput(c+"") || Workers.isEmpty() || GameMap.isGameOver()) 
-                {   running = false;
-                    window.showAlert("Vege a jateknak!");
-                }
-			
-                if (!Workers.isEmpty())
-                    changePlayer();
-            }
+            	running = false;
+                window.showAlert("Vege a jateknak!");
+            }	
+            if (!Workers.isEmpty())
+                changePlayer();
         }
+    }
 }

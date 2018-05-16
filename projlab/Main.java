@@ -5,33 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException, InterruptedException {
-		System.out.println("V�lassz teszt szekvenci�t 1-10ig a sz�m megad�s�val:");
-
-		/*String inputStr = System.console().readLine();
-		int input = Integer.parseInt(inputStr);
-
-		Scanner scin = new Scanner(System.in);
-		int input = scin.nextInt();
-		scin.close();
-
-		switch(input) {
-		case 1: seq01();break;
-			case 2: seq02();break;
-			case 3: seq03();break;
-			case 4: seq04();break;
-			case 5: seq05();break;
-			case 6: seq06();break;
-			case 7: seq07();break;
-			case 8: seq08();break;
-			case 9: seq09();break;
-			case 10: seq10();break;
-			case 11: seq11();break;
-			case 12: seq12();break;
-			case 13: seq13();break;
-			default: System.out.println("Rossz �rt�k!");
-		}*/
-		
+	public static void main(String[] args) throws IOException, InterruptedException {		
 		Map map = new Map();
 		map.initMapFromFile("test.txt");
 		map.create();
